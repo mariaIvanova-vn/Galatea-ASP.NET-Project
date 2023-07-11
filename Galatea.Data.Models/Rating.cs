@@ -6,6 +6,10 @@ namespace Galatea.Data.Models
 {
     public class Rating
     {
+        public Rating()
+        {
+            this.Id = Guid.NewGuid();
+        }
         [Key]
         public Guid Id { get; set; }
         public double TotalRating { get; set; }

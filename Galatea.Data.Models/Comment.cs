@@ -7,6 +7,10 @@ namespace Galatea.Data.Models
 {
     public class Comment
     {
+        public Comment()
+        {
+            this.Id = Guid.NewGuid();
+        }
         [Key]
         public Guid Id { get; set; }
 

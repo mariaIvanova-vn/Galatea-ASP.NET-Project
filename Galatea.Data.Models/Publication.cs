@@ -9,6 +9,7 @@ namespace Galatea.Data.Models
     {
         public Publication()
         {
+            this.Id = Guid.NewGuid();
             this.Comments = new HashSet<Comment>();
             this.Rating = new HashSet<Rating>();           
         }

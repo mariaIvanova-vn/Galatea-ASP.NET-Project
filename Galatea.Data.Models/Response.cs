@@ -8,6 +8,7 @@ namespace Galatea.Data.Models
     {
         public Response()
         {
+            this.Id = Guid.NewGuid();
             this.UserResponses = new HashSet<UserResponse>();
         }
         [Key]

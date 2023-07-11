@@ -9,6 +9,7 @@ namespace Galatea.Data.Models
     {
         public AppUser()
         {
+            this.Id = Guid.NewGuid();
             this.UsersPublications = new HashSet<Publication>();
             this.GivenRatings = new HashSet<Rating>();
             this.UserResponses = new HashSet<UserResponse>();
