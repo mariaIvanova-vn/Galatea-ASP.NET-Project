@@ -9,6 +9,8 @@ namespace Galatea.Data.Configuration
     {
         public void Configure(EntityTypeBuilder<Publication> builder)
         {
+            builder.Property(p=>p.CreatedOn).HasDefaultValue(DateTime.UtcNow);
+
             builder.HasOne(p=>p.Category)
                 .WithMany(c=>c.Publications)
                 .HasForeignKey(p=>p.CategoryId)

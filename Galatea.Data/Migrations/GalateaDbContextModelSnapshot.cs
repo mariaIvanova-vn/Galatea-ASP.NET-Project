@@ -164,7 +164,9 @@ namespace Galatea.Data.Migrations
                         .HasColumnType("nvarchar(500)");
 
                     b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValue(new DateTime(2023, 7, 12, 10, 44, 22, 822, DateTimeKind.Utc).AddTicks(2969));
 
                     b.Property<string>("ImageUrl")
                         .HasMaxLength(2048)
@@ -189,10 +191,10 @@ namespace Galatea.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("a5005d6f-0e06-44ee-9fd6-572c14bc14cb"),
+                            Id = new Guid("2257d2d3-b316-4f14-bd72-d9bb2cb6ed79"),
                             CategoryId = 2,
                             Content = "Квартален магазин за хранителни стоки търси персонал. За повече информация - 0888888888",
-                            CreatedOn = new DateTime(2023, 7, 11, 16, 4, 22, 455, DateTimeKind.Local).AddTicks(262),
+                            CreatedOn = new DateTime(2023, 7, 12, 13, 44, 22, 822, DateTimeKind.Local).AddTicks(5750),
                             ImageUrl = "https://www.24x7.place/media/images/objects/2017/1513689955-SN850672.JPG",
                             Title = "Търся персонал",
                             UserId = new Guid("2f0ff2d4-b657-4cb5-3c99-08db81f0bbc7")

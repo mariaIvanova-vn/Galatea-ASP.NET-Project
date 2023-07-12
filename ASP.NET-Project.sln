@@ -3,19 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33712.159
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Galatea.Web", "Galatea.Web\Galatea.Web.csproj", "{88528826-D8D6-4F7C-BB7E-F13AD117FA0F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Galatea.Web", "Galatea.Web\Galatea.Web.csproj", "{88528826-D8D6-4F7C-BB7E-F13AD117FA0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Galatea.Common", "Galatea.Common\Galatea.Common.csproj", "{7929B297-4785-440D-9FBA-FCF35212D101}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Galatea.Common", "Galatea.Common\Galatea.Common.csproj", "{7929B297-4785-440D-9FBA-FCF35212D101}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{CD97D3A9-6485-4B85-8166-546058AEA24A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{E877E52C-6303-45D4-892D-1B79FEA7783F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Galatea.Data", "Galatea.Data\Galatea.Data.csproj", "{62920050-92F9-47F0-8A19-E677872E7EA7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Galatea.Data", "Galatea.Data\Galatea.Data.csproj", "{62920050-92F9-47F0-8A19-E677872E7EA7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Galatea.Data.Models", "Galatea.Data.Models\Galatea.Data.Models.csproj", "{6033D360-59E9-4937-A182-6C8995927608}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Galatea.Data.Models", "Galatea.Data.Models\Galatea.Data.Models.csproj", "{6033D360-59E9-4937-A182-6C8995927608}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Galatea.Web.ViewModels", "Galatea.Web.ViewModels\Galatea.Web.ViewModels.csproj", "{DC47C704-168D-4DE9-B059-2D338CD2A77D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Galatea.Web.ViewModels", "Galatea.Web.ViewModels\Galatea.Web.ViewModels.csproj", "{DC47C704-168D-4DE9-B059-2D338CD2A77D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{5B855E4B-FF33-4EE0-8B13-42A87D6FFBE2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Galatea.Services.Data", "Galatea.Services.Data\Galatea.Services.Data.csproj", "{603A3F3D-A58B-4456-9FE6-C55E36A6EC4D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +47,10 @@ Global
 		{DC47C704-168D-4DE9-B059-2D338CD2A77D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC47C704-168D-4DE9-B059-2D338CD2A77D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC47C704-168D-4DE9-B059-2D338CD2A77D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{603A3F3D-A58B-4456-9FE6-C55E36A6EC4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{603A3F3D-A58B-4456-9FE6-C55E36A6EC4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{603A3F3D-A58B-4456-9FE6-C55E36A6EC4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{603A3F3D-A58B-4456-9FE6-C55E36A6EC4D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -52,6 +60,7 @@ Global
 		{62920050-92F9-47F0-8A19-E677872E7EA7} = {E877E52C-6303-45D4-892D-1B79FEA7783F}
 		{6033D360-59E9-4937-A182-6C8995927608} = {E877E52C-6303-45D4-892D-1B79FEA7783F}
 		{DC47C704-168D-4DE9-B059-2D338CD2A77D} = {CD97D3A9-6485-4B85-8166-546058AEA24A}
+		{603A3F3D-A58B-4456-9FE6-C55E36A6EC4D} = {5B855E4B-FF33-4EE0-8B13-42A87D6FFBE2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {61F09810-8C0D-4ECE-9AF8-9A3B2213A5A9}
