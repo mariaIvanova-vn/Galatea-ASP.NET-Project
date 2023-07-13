@@ -19,6 +19,7 @@
     <ProjectReference Include="..\Galatea.Common\Galatea.Common.csproj" />
     <ProjectReference Include="..\Galatea.Data.Models\Galatea.Data.Models.csproj" />
     <ProjectReference Include="..\Galatea.Data\Galatea.Data.csproj" />
+    <ProjectReference Include="..\Galatea.Services.Data\Galatea.Services.Data.csproj" />
     <ProjectReference Include="..\Galatea.Web.ViewModels\Galatea.Web.ViewModels.csproj" />
   </ItemGroup>
 
