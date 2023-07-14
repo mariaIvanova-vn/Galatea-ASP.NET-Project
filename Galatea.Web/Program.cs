@@ -1,5 +1,7 @@
 using Galatea.Data.Models;
+using Galatea.Services.Data.Interfaces;
 using Galatea.Web.Data;
+using Galatea.Web.Infrastructure.Extensions;
 
 using Microsoft.EntityFrameworkCore;
 
@@ -31,7 +33,9 @@ namespace Galatea.Web
                     builder.Configuration.GetValue<int>("Identity:Password:RequiredLength");
             })
                 .AddEntityFrameworkStores<GalateaDbContext>();
-            
+
+            builder.Services.AddApplicationServices(typeof(IPublicationService));
+
             builder.Services.AddControllersWithViews();
 
             WebApplication app = builder.Build();

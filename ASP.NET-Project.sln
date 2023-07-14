@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{5B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Galatea.Services.Data", "Galatea.Services.Data\Galatea.Services.Data.csproj", "{603A3F3D-A58B-4456-9FE6-C55E36A6EC4D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Galatea.Web.Infrastructure", "Galatea.Web.Infrastructure\Galatea.Web.Infrastructure.csproj", "{FE5AC2DB-8407-40EA-848D-467CCE234ED6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{603A3F3D-A58B-4456-9FE6-C55E36A6EC4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{603A3F3D-A58B-4456-9FE6-C55E36A6EC4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{603A3F3D-A58B-4456-9FE6-C55E36A6EC4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE5AC2DB-8407-40EA-848D-467CCE234ED6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE5AC2DB-8407-40EA-848D-467CCE234ED6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE5AC2DB-8407-40EA-848D-467CCE234ED6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE5AC2DB-8407-40EA-848D-467CCE234ED6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -61,6 +67,7 @@ Global
 		{6033D360-59E9-4937-A182-6C8995927608} = {E877E52C-6303-45D4-892D-1B79FEA7783F}
 		{DC47C704-168D-4DE9-B059-2D338CD2A77D} = {CD97D3A9-6485-4B85-8166-546058AEA24A}
 		{603A3F3D-A58B-4456-9FE6-C55E36A6EC4D} = {5B855E4B-FF33-4EE0-8B13-42A87D6FFBE2}
+		{FE5AC2DB-8407-40EA-848D-467CCE234ED6} = {CD97D3A9-6485-4B85-8166-546058AEA24A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {61F09810-8C0D-4ECE-9AF8-9A3B2213A5A9}
