@@ -44,4 +44,9 @@ public static class EntityValidationConstants
         public const int RatingMinLength = 0;
         public const int RatingMaxLength = 5;
     }
+    public static class PublicationsQuery
+    {
+        public const int SearchMaxLength = 50;
+        
+    }
 }
