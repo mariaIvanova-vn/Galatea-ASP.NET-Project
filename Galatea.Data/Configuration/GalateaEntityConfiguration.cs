@@ -11,6 +11,8 @@ namespace Galatea.Data.Configuration
         {
             builder.Property(p => p.CreatedOn).HasDefaultValueSql("GETDATE()");
 
+            builder.Property(p => p.IsActive).HasDefaultValue(true);
+
             builder.HasOne(p=>p.Category)
                 .WithMany(c=>c.Publications)
                 .HasForeignKey(p=>p.CategoryId)

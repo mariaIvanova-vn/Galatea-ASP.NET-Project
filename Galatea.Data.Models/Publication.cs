@@ -29,6 +29,8 @@ namespace Galatea.Data.Models
 
         public DateTime CreatedOn { get; set; }
 
+        public bool IsActive { get; set; }
+
         [Required]
         public int CategoryId { get; set; }
 
