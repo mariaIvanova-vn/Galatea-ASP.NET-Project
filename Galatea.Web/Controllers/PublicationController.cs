@@ -3,7 +3,9 @@ using Galatea.Services.Data.PublicationServiceModel;
 using Galatea.Web.ViewModels.Publication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using System.Security.Claims;
 
 namespace Galatea.Web.Controllers
 {
@@ -72,6 +74,18 @@ namespace Galatea.Web.Controllers
             }
 
             //return RedirectToAction("All", "Publication");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> MyPublications()
+        {
+            var myPublication = new List<PublicationAllViewModel>();
+
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            
+            myPublication.AddRange(await _publicationService.AllByUserIdAsync(userId));
+
+            return View(myPublication);
         }
     }
 }
