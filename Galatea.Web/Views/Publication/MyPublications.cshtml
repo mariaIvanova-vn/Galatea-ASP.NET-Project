@@ -1,0 +1,41 @@
+﻿@model List<PublicationAllViewModel>
+@{
+    ViewData["Title"] = "Моите Обяви";
+}
+
+
+<div style="background-image: url('/wwwroot/bg_.jpg'); background-repeat:no-repeat; background-size:100% 100%">
+
+@if (Model.Any())
+{
+    <h2 class="text-center">@ViewData["Title"]</h2>
+    <hr />
+    <div class="row">
+        @foreach (PublicationAllViewModel publication in Model)
+        {
+            <partial name="_PublicationPartial" model="publication" />
+        }
+    </div>
+}
+else
+{
+    <h2 class="text-center">@ViewData["Title"]</h2>
+    <hr />
+    <h2 class="text-center">Нямате публикации!</h2>
+}﻿
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,35 @@
+﻿@using Galatea.Services.Data.Interfaces;
+
+@using Galatea.Web.Infrastructure.Extensions;
+
+@model PublicationAllViewModel
+
+
+<div class="col-md-4">
+    <div class="card mb-3">
+        <img class="card-img-top" src="@Model.ImageUrl" alt="Publication Image">
+        <div class="card-body text-center">
+            <h4>@Model.Title</h4>
+            <h6> <b>@Model.Content</b></h6>
+            
+           
+            <br />
+            <a asp-controller="Publication" asp-action="Details" asp-route-id="@Model.Id"
+               class="btn btn-success">Детайли</a>
+
+            @if (User.Identity?.IsAuthenticated ?? false)
+            {
+                
+                    <a asp-controller="House" asp-action="Edit" asp-route-id="@Model.Id"
+                       class="btn btn-warning">Edit</a>
+                    <a asp-controller="House" asp-action="Delete" asp-route-id="@Model.Id"
+                       class="btn btn-danger">Delete</a>
+                
+                <p></p>
+
+                             
+                
+            }
+        </div>
+    </div>
+</div>

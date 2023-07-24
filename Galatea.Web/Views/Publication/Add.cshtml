@@ -1,0 +1,14 @@
+﻿@model PublicationFormModel
+@{
+    ViewData["Title"] = "Добави Публикация";
+}
+
+<h2 class="text-center">@ViewData["Title"]</h2>
+<hr />
+
+<partial name="_PublicationFormPartial" model="@Model" />
+
+@section Scripts
+    {
+    <partial name="_ValidationScriptsPartial" />
+}

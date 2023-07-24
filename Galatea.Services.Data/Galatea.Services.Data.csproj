@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Galatea.Common\Galatea.Common.csproj" />
+    <ProjectReference Include="..\Galatea.Data.Models\Galatea.Data.Models.csproj" />
+    <ProjectReference Include="..\Galatea.Data\Galatea.Data.csproj" />
+    <ProjectReference Include="..\Galatea.Web.ViewModels\Galatea.Web.ViewModels.csproj" />
+  </ItemGroup>
+
+</Project>

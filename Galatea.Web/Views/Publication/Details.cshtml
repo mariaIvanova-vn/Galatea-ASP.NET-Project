@@ -1,0 +1,68 @@
+﻿﻿@using Galatea.Services.Data.Interfaces
+@using Galatea.Web.Infrastructure.Extensions
+@model PublicationDetails
+
+
+@{
+    ViewBag.Title = "Детайли за Публикация";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="container" style="display:inline">
+    <div class="row">
+        <div class="col-4">
+            <img class="card-img-top" style="width: 20rem;"
+                 src="@Model.ImageUrl" alt="Publication Image">
+        </div>
+        <div class="card col-8 border-0">
+            <p style="font-size:25px;"><u>@Model.Title</u></p>
+            <p>Описание: <b>@Model.Content</b></p>
+            
+            <p>@Model.CreatedOn</p>
+            <p>Категория: <b>@Model.Category</b></p>
+
+            <section class="ftco-section bg-light">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-md-12 col-lg-12 mb-5">
+
+                            <form method="post" class="p-5 bg-white">
+
+                                <div class="row form-group">
+                                    <div class="col-md-12"><h3>Коментирай</h3></div>
+                                    <div class="col-md-12 mb-3 mb-md-0">
+                                        <textarea name="text" class="form-control" id="" cols="30" rows="5"></textarea>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-md-12">
+                                        <input type="submit" value="Изпрати" asp-controller="Comments" >
+                                    </div>
+                                </div>
+
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <div class="form-inline">
+                @if (User.Identity?.IsAuthenticated ?? false)
+                {
+                   
+                        <a class="btn btn-warning" asp-controller="House" asp-action="Edit"
+                           asp-route-id="@Model.Id">Edit</a>
+                        <a class="ml-2 btn btn-danger" asp-controller="House" asp-action="Delete"
+                           asp-route-id="@Model.Id">Delete</a>
+                    
+                }
+            </div>
+            <p></p>
+            
+        </div>
+    </div>
+</div>
