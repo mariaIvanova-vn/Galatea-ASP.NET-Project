@@ -1,4 +1,5 @@
-﻿using Galatea.Services.Data.Interfaces;
+﻿using Galatea.Services.Data;
+using Galatea.Services.Data.Interfaces;
 using Galatea.Services.Data.PublicationServiceModel;
 using Galatea.Web.ViewModels.Publication;
 using Microsoft.AspNetCore.Authorization;
@@ -74,6 +75,16 @@ namespace Galatea.Web.Controllers
             }
 
             //return RedirectToAction("All", "Publication");
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> Details(string id)
+        {
+            PublicationDetails publicationDetails = await _publicationService.GetDetailsByIdAsync(id);
+
+
+            return View(publicationDetails);
         }
 
         [HttpGet]
