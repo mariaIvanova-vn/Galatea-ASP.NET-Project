@@ -63,9 +63,9 @@
                 @if (User.Identity?.IsAuthenticated ?? false)
                 {
                    
-                        <a class="btn btn-warning" asp-controller="House" asp-action="Edit"
+                        <a class="btn btn-warning" asp-controller="Publication" asp-action="Edit"
                            asp-route-id="@Model.Id">Edit</a>
-                        <a class="ml-2 btn btn-danger" asp-controller="House" asp-action="Delete"
+                    <a class="ml-2 btn btn-danger" asp-controller="Publication" asp-action="Delete"
                            asp-route-id="@Model.Id">Delete</a>
                     
                 }

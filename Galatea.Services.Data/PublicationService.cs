@@ -102,7 +102,15 @@ namespace Galatea.Services.Data
             };
             await dbContext.Publications.AddAsync(publication);
             await dbContext.SaveChangesAsync();
-        }       
+        }
+
+        public async Task<bool> ExistByIdAsync(string publicationId)
+        {
+            bool result = await this.dbContext.Publications.Where(p=>p.IsActive)
+                .AnyAsync(p=>p.Id.ToString() == publicationId);
+
+            return result;
+        }
 
         public async Task<PublicationDetails> GetDetailsByIdAsync(string publicationId)
         {
@@ -121,6 +129,20 @@ namespace Galatea.Services.Data
                 CreatedOn = publication.CreatedOn,
                 Category = publication.Category.Name,
                 
+            };
+        }
+
+        public async Task<PublicationFormModel> GetPublicationForEditAsync(string publicationId)
+        {
+            Publication publication = await this.dbContext.Publications.Include(p => p.Category)
+                .Where(p => p.IsActive).FirstAsync(p => p.Id.ToString() == publicationId);
+
+            return new PublicationFormModel
+            {
+                Title = publication.Title,
+                Content = publication.Content,
+                ImageUrl = publication.ImageUrl,
+                CategoryId = publication.CategoryId
             };
         }
     }

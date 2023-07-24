@@ -15,5 +15,9 @@ namespace Galatea.Services.Data.Interfaces
         Task<IEnumerable<PublicationAllViewModel>> AllByUserIdAsync(string userId);
 
         Task<PublicationDetails> GetDetailsByIdAsync(string publicationId);
+
+        Task<bool> ExistByIdAsync(string publicationId);
+
+        Task<PublicationFormModel> GetPublicationForEditAsync(string publicationId);
     }
 }

@@ -81,10 +81,34 @@ namespace Galatea.Web.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Details(string id)
         {
+            bool isPublicationExist = await _publicationService.ExistByIdAsync(id);
+            if (!isPublicationExist)
+            {
+                return this.NotFound();
+            }
             PublicationDetails publicationDetails = await _publicationService.GetDetailsByIdAsync(id);
 
 
             return View(publicationDetails);
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(string id)
+        {
+            bool isPublicationExist = await _publicationService.ExistByIdAsync(id);
+            if (!isPublicationExist)
+            {
+                return this.NotFound();
+            }
+
+
+            PublicationFormModel formModel = await _publicationService
+                    .GetPublicationForEditAsync(id);
+            formModel.Categories = await _categoryService.GetAllCategoriesAsync();
+
+            return View(formModel);
+            
         }
 
         [HttpGet]
