@@ -31,18 +31,27 @@
 
                             <form method="post" class="p-5 bg-white">
 
-                                <div class="row form-group">
-                                    <div class="col-md-12"><h3>Коментирай</h3></div>
-                                    <div class="col-md-12 mb-3 mb-md-0">
-                                        <textarea name="text" class="form-control" id="" cols="30" rows="5"></textarea>
-                                    </div>
-                                </div>
-                                <div class="row form-group">
-                                    <div class="col-md-12">
-                                        <input type="submit" value="Изпрати" asp-controller="Comments" >
-                                    </div>
-                                </div>
+                                
+                                
 
+                                <center>
+                                    <font face="Arial" size="4"><b> Мнения на потребители </b> </font> <br><br>
+
+
+                                    <form method="POST" action="mailto:maria_vn86@abv.bg">
+                                        <b>
+
+                                            Име:<input name="name" type="text"> &nbsp;&nbsp;&nbsp; Години:<input name="age" type="text">&nbsp;&nbsp;&nbsp;
+                                            Пол:<input name="sex" value="female" checked="checked" type="radio">Жена &nbsp;&nbsp;<input name="sex" value="Male" type="radio">Мъж
+                                            <br><br>
+                                            Въведете вашето мнение:<br>
+                                            <textarea name="msg" rows="4" cols="45"></textarea><br>
+                                            <input value="Въведи" type="submit">
+                                            <input value="Изчисти" type="reset">
+
+                                        </b>
+                                    </form>
+                                </center>
 
                             </form>
                         </div>

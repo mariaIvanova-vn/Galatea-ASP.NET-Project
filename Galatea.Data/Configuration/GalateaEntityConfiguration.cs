@@ -2,6 +2,9 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 using Galatea.Data.Models;
+using static Galatea.Common.EntityValidationConstants;
+using Publication = Galatea.Data.Models.Publication;
+using Comment = Galatea.Data.Models.Comment;
 
 namespace Galatea.Data.Configuration
 {

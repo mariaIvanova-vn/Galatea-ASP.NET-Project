@@ -1,18 +1,16 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 using static Galatea.Common.EntityValidationConstants.Comment;
 
 namespace Galatea.Data.Models
 {
-    public class Comment
+    public class Comment 
     {
-        public Comment()
-        {
-            this.Id = Guid.NewGuid();
-        }
+      
         [Key]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [MaxLength(TextMaxLength)]

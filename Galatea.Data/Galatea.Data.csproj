@@ -20,11 +20,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Galatea.Data.Models\Galatea.Data.Models.csproj" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Migrations\" />
+    <ProjectReference Include="..\Galatea.Common\Galatea.Common.csproj" />
+    <ProjectReference Include="..\Galatea.Data.Models\Galatea.Data.Models.csproj" />
   </ItemGroup>
 
 </Project>

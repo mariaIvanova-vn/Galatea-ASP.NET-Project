@@ -19,9 +19,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Galatea.Web.ViewModels", "G
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{5B855E4B-FF33-4EE0-8B13-42A87D6FFBE2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Galatea.Services.Data", "Galatea.Services.Data\Galatea.Services.Data.csproj", "{603A3F3D-A58B-4456-9FE6-C55E36A6EC4D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Galatea.Services.Data", "Galatea.Services.Data\Galatea.Services.Data.csproj", "{603A3F3D-A58B-4456-9FE6-C55E36A6EC4D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Galatea.Web.Infrastructure", "Galatea.Web.Infrastructure\Galatea.Web.Infrastructure.csproj", "{FE5AC2DB-8407-40EA-848D-467CCE234ED6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Galatea.Web.Infrastructure", "Galatea.Web.Infrastructure\Galatea.Web.Infrastructure.csproj", "{FE5AC2DB-8407-40EA-848D-467CCE234ED6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3D2F4929-911C-4A9F-B861-E060379082D9}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
