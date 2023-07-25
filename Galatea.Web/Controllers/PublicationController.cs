@@ -5,6 +5,7 @@ using Galatea.Web.ViewModels.Publication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Logging;
 using System.Security.Claims;
 
@@ -61,19 +62,19 @@ namespace Galatea.Web.Controllers
                 formModel.Categories = await _categoryService.GetAllCategoriesAsync();
                 return View(formModel);
             }
-
             try
-            {
-                await _publicationService.CreateAsync(formModel);
-                return RedirectToAction("All", "Publication");
+            {              
+                string publicationId =
+                   await _publicationService.CreateAsync(formModel);
+                
+                return RedirectToAction("Details", "Publication", new { id = publicationId });             
             }
             catch (Exception)
             {
                 ModelState.AddModelError(string.Empty, "Неочаквана грешка при добавянето на обява. Моля опитайте по-късно!");
                 formModel.Categories = await _categoryService.GetAllCategoriesAsync();
                 return View(formModel);
-            }
-
+            }            
             //return RedirectToAction("All", "Publication");
         }
 
@@ -110,6 +111,37 @@ namespace Galatea.Web.Controllers
             return View(formModel);
             
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(string id, PublicationFormModel formModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                formModel.Categories = await _categoryService.GetAllCategoriesAsync();
+
+                return View(formModel);
+            }
+
+            bool isPublicationExist = await _publicationService.ExistByIdAsync(id);
+            if (!isPublicationExist)
+            {
+                return this.NotFound();
+            }
+
+            try
+            {
+                await _publicationService.EditPublicationByIdAsync(id, formModel);
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError(string.Empty, "Грешка при редактирането на публикация. Моля опитайте по-късно!");
+                formModel.Categories = await _categoryService.GetAllCategoriesAsync();
+                return View(formModel);
+            }                      
+            return RedirectToAction("Details", "Publication", new { id });
+        }
+
+
 
         [HttpGet]
         public async Task<IActionResult> MyPublications()

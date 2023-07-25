@@ -91,7 +91,7 @@ namespace Galatea.Services.Data
             return allUserPublications;
         }
 
-        public async Task CreateAsync(PublicationFormModel model)
+        public async Task<string> CreateAsync(PublicationFormModel model)
         {
             Publication publication = new Publication
             {
@@ -101,6 +101,22 @@ namespace Galatea.Services.Data
                 CategoryId = model.CategoryId,
             };
             await dbContext.Publications.AddAsync(publication);
+            await dbContext.SaveChangesAsync();
+
+            return publication.Id.ToString();
+        }
+
+        public async Task EditPublicationByIdAsync(string publicationId, PublicationFormModel formModel)
+        {
+            var publication = await dbContext.Publications.Where(p=>p.IsActive)
+                .FirstAsync(p=>p.Id.ToString() == publicationId);
+
+            publication.Title = formModel.Title;
+            publication.Content = formModel.Content;
+            publication.ImageUrl = formModel.ImageUrl;
+            publication.CategoryId = formModel.CategoryId;
+            publication.CreatedOn = DateTime.Now;
+
             await dbContext.SaveChangesAsync();
         }
 

@@ -8,7 +8,7 @@ namespace Galatea.Services.Data.Interfaces
     public interface IPublicationService
     {
 
-        Task CreateAsync(PublicationFormModel model);
+        Task<string> CreateAsync(PublicationFormModel model);
 
         Task<AllPublicationFilteredServiceModel> AllAsync(PublicationsAllQueryModel model);
 
@@ -19,5 +19,7 @@ namespace Galatea.Services.Data.Interfaces
         Task<bool> ExistByIdAsync(string publicationId);
 
         Task<PublicationFormModel> GetPublicationForEditAsync(string publicationId);
+
+        Task EditPublicationByIdAsync(string publicationId, PublicationFormModel formModel);
     }
 }
