@@ -87,10 +87,19 @@ namespace Galatea.Web.Controllers
             {
                 return this.NotFound();
             }
-            PublicationDetails publicationDetails = await _publicationService.GetDetailsByIdAsync(id);
 
+            try
+            {
+                PublicationDetails publicationDetails = await _publicationService.GetDetailsByIdAsync(id);
 
-            return View(publicationDetails);
+                return View(publicationDetails);
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError(string.Empty, "Грешка при достъпването на детайлите. Моля опитайте по-късно!");
+
+                return RedirectToAction("Index", "Home");
+            }            
         }
 
 
@@ -102,14 +111,20 @@ namespace Galatea.Web.Controllers
             {
                 return this.NotFound();
             }
-
-
-            PublicationFormModel formModel = await _publicationService
+            try
+            {
+                PublicationFormModel formModel = await _publicationService
                     .GetPublicationForEditAsync(id);
-            formModel.Categories = await _categoryService.GetAllCategoriesAsync();
+                formModel.Categories = await _categoryService.GetAllCategoriesAsync();
 
-            return View(formModel);
-            
+                return View(formModel);
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError(string.Empty, "Грешка при достъпването на детайлите. Моля опитайте по-късно!");
+
+                return RedirectToAction("Index", "Home");
+            }           
         }
 
         [HttpPost]
@@ -127,7 +142,6 @@ namespace Galatea.Web.Controllers
             {
                 return this.NotFound();
             }
-
             try
             {
                 await _publicationService.EditPublicationByIdAsync(id, formModel);

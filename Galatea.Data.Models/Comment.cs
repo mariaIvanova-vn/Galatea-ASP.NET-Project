@@ -6,9 +6,9 @@ using static Galatea.Common.EntityValidationConstants.Comment;
 
 namespace Galatea.Data.Models
 {
-    public class Comment 
+    public class Comment
     {
-      
+
         [Key]
         public int Id { get; set; }
 

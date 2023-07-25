@@ -8,7 +8,7 @@ namespace Galatea.Data.Models
     {
         public Category()
         {
-                this.Publications = new HashSet<Publication>();
+            this.Publications = new HashSet<Publication>();
         }
         [Key]
         public int Id { get; set; }
@@ -17,7 +17,7 @@ namespace Galatea.Data.Models
         [MaxLength(NameMaxLength)]
         public string Name { get; set; } = null!;
 
-       
+
         public virtual ICollection<Publication> Publications { get; set; }
     }
 }

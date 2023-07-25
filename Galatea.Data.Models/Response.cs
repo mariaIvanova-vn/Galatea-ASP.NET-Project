@@ -18,7 +18,7 @@ namespace Galatea.Data.Models
         [MaxLength(TextMaxLength)]
         public string Text { get; set; } = null!;
 
-        [Range(RatingMinLength,RatingMaxLength)]
+        [Range(RatingMinLength, RatingMaxLength)]
         public short Rating { get; set; }
 
         public virtual ICollection<UserResponse> UserResponses { get; set; }

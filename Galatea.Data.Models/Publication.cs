@@ -11,7 +11,7 @@ namespace Galatea.Data.Models
         {
             this.Id = Guid.NewGuid();
             this.Comments = new HashSet<Comment>();
-            this.Rating = new HashSet<Rating>();           
+            this.Rating = new HashSet<Rating>();
         }
         [Key]
         public Guid Id { get; set; }
