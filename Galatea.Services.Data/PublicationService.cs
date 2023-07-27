@@ -7,6 +7,7 @@ using Galatea.Web.ViewModels.Comments;
 using Galatea.Web.ViewModels.Publication;
 using Galatea.Web.ViewModels.Publication.Enum;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace Galatea.Services.Data
 {
@@ -106,6 +107,18 @@ namespace Galatea.Services.Data
             return publication.Id.ToString();
         }
 
+        public async Task DeletePublicationByIdAsync(string publicationId)
+        {
+            Publication publication = await dbContext
+                .Publications
+                .Where(h => h.IsActive)
+                .FirstAsync(h => h.Id.ToString() == publicationId);
+
+            publication.IsActive = false;
+
+            await dbContext.SaveChangesAsync();
+        }
+
         public async Task EditPublicationByIdAsync(string publicationId, PublicationFormModel formModel)
         {
             var publication = await dbContext.Publications.Where(p=>p.IsActive)
@@ -148,6 +161,21 @@ namespace Galatea.Services.Data
             };
         }
 
+        public async Task<PublicationDeleteDetailsViewModel> GetPublicationForDeleteAsync(string publicationId)
+        {
+            Publication publication = await dbContext
+               .Publications
+               .Where(h => h.IsActive)
+               .FirstAsync(h => h.Id.ToString() == publicationId);
+
+            return new PublicationDeleteDetailsViewModel
+            {
+                Title = publication.Title,
+                Content = publication.Content,
+                ImageUrl = publication.ImageUrl!
+            };
+        }
+
         public async Task<PublicationFormModel> GetPublicationForEditAsync(string publicationId)
         {
             Publication publication = await this.dbContext.Publications.Include(p => p.Category)
@@ -160,6 +188,16 @@ namespace Galatea.Services.Data
                 ImageUrl = publication.ImageUrl,
                 CategoryId = publication.CategoryId
             };
+        }
+
+        public async Task<bool> IsUserWithIdOwnerOfPublicationWithIdAsync(string publicationId, string userId)
+        {
+            Publication publication = await dbContext
+                .Publications
+                .Where(h => h.IsActive)
+                .FirstAsync(h => h.Id.ToString() == publicationId);
+
+            return publication.UserId.ToString() == userId;
         }
     }
 }

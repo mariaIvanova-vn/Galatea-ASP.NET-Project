@@ -18,8 +18,14 @@ namespace Galatea.Services.Data.Interfaces
 
         Task<bool> ExistByIdAsync(string publicationId);
 
+        Task<bool> IsUserWithIdOwnerOfPublicationWithIdAsync(string publicationId, string userId);
+
         Task<PublicationFormModel> GetPublicationForEditAsync(string publicationId);
 
         Task EditPublicationByIdAsync(string publicationId, PublicationFormModel formModel);
+
+        Task<PublicationDeleteDetailsViewModel> GetPublicationForDeleteAsync(string publicationId);
+
+        Task DeletePublicationByIdAsync(string publicationId);
     }
 }

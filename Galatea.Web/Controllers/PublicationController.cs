@@ -9,6 +9,8 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Logging;
 using System.Security.Claims;
 
+using static Galatea.Common.NotificationMessages;
+
 namespace Galatea.Web.Controllers
 {
     [Authorize]
@@ -16,11 +18,13 @@ namespace Galatea.Web.Controllers
     {
         private readonly ICategoryService _categoryService;
         private readonly IPublicationService _publicationService;
+        private readonly IUserService _userService;
 
-        public PublicationController(ICategoryService categoryService, IPublicationService publicationService)
+        public PublicationController(ICategoryService categoryService, IPublicationService publicationService, IUserService userService)
         {
             this._categoryService = categoryService;
             this._publicationService = publicationService;
+            this._userService = userService;
         }
         [HttpGet]
         [AllowAnonymous]
@@ -111,6 +115,15 @@ namespace Galatea.Web.Controllers
             {
                 return this.NotFound();
             }
+            string? userId =
+               await _userService.GetUserIdAsync();
+
+            bool isUserOwner = await _publicationService
+                .IsUserWithIdOwnerOfPublicationWithIdAsync(id, userId!);
+            if (!isUserOwner)
+            {
+                return this.NotFound();
+            }
             try
             {
                 PublicationFormModel formModel = await _publicationService
@@ -142,6 +155,17 @@ namespace Galatea.Web.Controllers
             {
                 return this.NotFound();
             }
+            string? userId =
+               await _userService.GetUserIdAsync();
+
+            bool isUserOwner = await _publicationService
+                .IsUserWithIdOwnerOfPublicationWithIdAsync(id, userId!);
+            if (!isUserOwner)
+            {
+                TempData[ErrorMessage] = "Трябва публикацията да е ваша за да я редактирате!";
+
+                return RedirectToAction("All", "Publication");
+            }
             try
             {
                 await _publicationService.EditPublicationByIdAsync(id, formModel);
@@ -155,6 +179,69 @@ namespace Galatea.Web.Controllers
             return RedirectToAction("Details", "Publication", new { id });
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Delete(string id)
+        {
+            bool isPublicationExist = await _publicationService.ExistByIdAsync(id);
+            if (!isPublicationExist)
+            {
+                return this.NotFound();
+            }
+            string? userId =
+               await _userService.GetUserIdAsync();
+               
+            bool isUserOwner = await _publicationService
+                .IsUserWithIdOwnerOfPublicationWithIdAsync(id, userId!);
+            if (!isUserOwner)
+            {
+                TempData[ErrorMessage] = "Трябва публикацията да е ваша за да я изтриете!";
+
+                return RedirectToAction("All", "Publication");
+            }
+            try
+            {
+                PublicationDeleteDetailsViewModel viewModel =
+                    await _publicationService.GetPublicationForDeleteAsync(id);
+                return View(viewModel);
+            }
+            catch (Exception)
+            {
+                return this.NotFound();
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(string id, PublicationDeleteDetailsViewModel model)
+        {
+            bool isPublicationExist = await _publicationService.ExistByIdAsync(id);
+            if (!isPublicationExist)
+            {
+                return this.NotFound();
+            }
+            string? userId =
+               await _userService.GetUserIdAsync();
+
+            bool isUserOwner = await _publicationService
+                .IsUserWithIdOwnerOfPublicationWithIdAsync(id, userId!);
+            if (!isUserOwner)
+            {
+                TempData[ErrorMessage] = "Трябва публикацията да е ваша за да я изтриете!";
+
+                return RedirectToAction("All", "Publication");
+            }
+
+            try
+            {
+                await _publicationService.DeletePublicationByIdAsync(id);
+
+                TempData[WarningMessage] = "Публикацията беше изтрита успешно!";
+                return RedirectToAction("MyPublication", "Publication");
+            }
+            catch (Exception)
+            {
+                return this.NotFound();
+            }
+        }
 
 
         [HttpGet]
