@@ -1,7 +1,10 @@
-﻿﻿@using Galatea.Services.Data.Interfaces
+﻿@using Galatea.Data.Models;
+﻿@using Galatea.Services.Data.Interfaces
 @using Galatea.Web.Infrastructure.Extensions
+@using Microsoft.AspNetCore.Identity;
 @model PublicationDetails
 
+@inject UserManager<AppUser> UserManager
 
 @{
     ViewBag.Title = "Детайли за Публикация";
@@ -9,7 +12,9 @@
 
 <h2 class="text-center">@ViewBag.Title</h2>
 <hr />
-
+<div class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+</div>
 <div class="container" style="display:inline">
     <div class="row">
         <div class="col-4">
@@ -23,41 +28,7 @@
             <p>@Model.CreatedOn</p>
             <p>Категория: <b>@Model.Category</b></p>
 
-            <section class="ftco-section bg-light">
-                <div class="container">
-                    <div class="row">
-
-                        <div class="col-md-12 col-lg-12 mb-5">
-
-                            <form method="post" class="p-5 bg-white">
-
-                                
-                                
-
-                                <center>
-                                    <font face="Arial" size="4"><b> Мнения на потребители </b> </font> <br><br>
-
-
-                                    <form method="POST" action="mailto:maria_vn86@abv.bg">
-                                        <b>
-
-                                            Име:<input name="name" type="text"> &nbsp;&nbsp;&nbsp; Години:<input name="age" type="text">&nbsp;&nbsp;&nbsp;
-                                            Пол:<input name="sex" value="female" checked="checked" type="radio">Жена &nbsp;&nbsp;<input name="sex" value="Male" type="radio">Мъж
-                                            <br><br>
-                                            Въведете вашето мнение:<br>
-                                            <textarea name="msg" rows="4" cols="45"></textarea><br>
-                                            <input value="Въведи" type="submit">
-                                            <input value="Изчисти" type="reset">
-
-                                        </b>
-                                    </form>
-                                </center>
-
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            
             
             <div class="form-inline">
                 @if (User.Identity?.IsAuthenticated ?? false)
@@ -75,3 +46,29 @@
         </div>
     </div>
 </div>
+<hr />
+<div class="justify-content-center"><h3>Коментари</h3></div>
+
+@*@foreach (var comment in @Model.Comments!)
+{
+    <div class="col-md-12 ftco-animate">
+        <div class="job-post-item p-4 d-block d-lg-flex align-items-center">
+            <div class="one-third mb-4 mb-md-0">
+                <div class="align-items-center">
+                    <img src="@comment.UserProfilePictureUrl" class="avatar rounded-circle" />
+                    <p>
+                        <a asp-controller="Users" asp-action="UserProfile" asp-route-id="@comment.UserId" class="text-secondary text-left"><strong>@comment.UserName</strong></a>
+                    </p>
+
+                    <p>@comment.Text</p>
+                    <time datetime="@comment.CreatedOn.ToString("O")"></time>
+                    @if (comment.UserId == UserManager.GetUserId(User))
+                    {
+                        <a class="btn btn-danger" type="submit" asp-controller="Comments" asp-action="Delete" asp-route-commentId="@comment.Id">Изтрий</a>
+                    }
+                </div>
+            </div>
+        </div>
+
+    </div>
+}*@

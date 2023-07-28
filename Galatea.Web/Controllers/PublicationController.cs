@@ -22,10 +22,10 @@ namespace Galatea.Web.Controllers
     {
         private readonly ICategoryService _categoryService;
         private readonly IPublicationService _publicationService;
-        private readonly IUserService _userService;
+        private readonly IUsersService _userService;
         private readonly UserManager<AppUser> userManager;
 
-        public PublicationController(ICategoryService categoryService, IPublicationService publicationService, IUserService userService, UserManager<AppUser> userManager)
+        public PublicationController(ICategoryService categoryService, IPublicationService publicationService, IUsersService userService, UserManager<AppUser> userManager)
         {
             this._categoryService = categoryService;
             this._publicationService = publicationService;
@@ -231,16 +231,12 @@ namespace Galatea.Web.Controllers
             {
                 return this.NotFound();
             }
-            string? userId =
-               await _userService.GetUserIdAsync();
-
-            bool isUserOwner = await _publicationService
-                .IsUserWithIdOwnerOfPublicationWithIdAsync(id, userId!);
+            var user = await this.userManager.GetUserAsync(this.User);
+            string? userId = user.Id.ToString();
+            bool isUserOwner = await _publicationService.IsUserPublicationOwnerAsync(id, userId!);
             if (!isUserOwner)
             {
-                TempData[ErrorMessage] = "Трябва публикацията да е ваша за да я изтриете!";
-
-                return RedirectToAction("All", "Publication");
+                return RedirectToAction("Index", "Home");
             }
 
             try
@@ -248,7 +244,7 @@ namespace Galatea.Web.Controllers
                 await _publicationService.DeletePublicationByIdAsync(id);
 
                 TempData[WarningMessage] = "Публикацията беше изтрита успешно!";
-                return RedirectToAction("MyPublication", "Publication");
+                return RedirectToAction("MyPublications", "Publication");
             }
             catch (Exception)
             {

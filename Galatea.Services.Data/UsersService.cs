@@ -10,13 +10,21 @@ using Microsoft.Extensions.Logging;
 
 namespace Galatea.Services.Data
 {
-    public class UserService : IUserService
+    public class UsersService : IUsersService
     {
         private readonly GalateaDbContext dbContext;
 
-        public UserService(GalateaDbContext dbContext)
+        public UsersService(GalateaDbContext dbContext)
         {
             this.dbContext = dbContext;
+        }
+
+        public int GetUserCount()
+        {
+            var userCount =
+                this.dbContext.Users.AsNoTracking().Count();
+                              
+            return userCount;
         }
 
         public async Task<string?> GetUserIdAsync()

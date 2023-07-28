@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Galatea.Services.Data", "Ga
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Galatea.Web.Infrastructure", "Galatea.Web.Infrastructure\Galatea.Web.Infrastructure.csproj", "{FE5AC2DB-8407-40EA-848D-467CCE234ED6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Galatea.WebAPI", "Galatea.WebAPI\Galatea.WebAPI.csproj", "{D465996D-9DBE-4ADC-818B-0822EDEADD4C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{FE5AC2DB-8407-40EA-848D-467CCE234ED6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE5AC2DB-8407-40EA-848D-467CCE234ED6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE5AC2DB-8407-40EA-848D-467CCE234ED6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D465996D-9DBE-4ADC-818B-0822EDEADD4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D465996D-9DBE-4ADC-818B-0822EDEADD4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D465996D-9DBE-4ADC-818B-0822EDEADD4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D465996D-9DBE-4ADC-818B-0822EDEADD4C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,6 +74,7 @@ Global
 		{DC47C704-168D-4DE9-B059-2D338CD2A77D} = {CD97D3A9-6485-4B85-8166-546058AEA24A}
 		{603A3F3D-A58B-4456-9FE6-C55E36A6EC4D} = {5B855E4B-FF33-4EE0-8B13-42A87D6FFBE2}
 		{FE5AC2DB-8407-40EA-848D-467CCE234ED6} = {CD97D3A9-6485-4B85-8166-546058AEA24A}
+		{D465996D-9DBE-4ADC-818B-0822EDEADD4C} = {CD97D3A9-6485-4B85-8166-546058AEA24A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {61F09810-8C0D-4ECE-9AF8-9A3B2213A5A9}

@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace Galatea.Services.Data.Interfaces
 {
-    public interface IUserService
+    public interface IUsersService
     {
         Task<string?> GetUserIdAsync();
 
         Task<bool> IsUserWithIdOwnerOfPublicationWithIdAsync(string publicationId, string userId);
+
+        int GetUserCount();
     }
 }
