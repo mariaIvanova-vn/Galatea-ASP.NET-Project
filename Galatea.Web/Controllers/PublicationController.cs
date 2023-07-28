@@ -96,7 +96,6 @@ namespace Galatea.Web.Controllers
                 //string publicationId =
                 //  await _publicationService.CreateAndReturnIdAsync(formModel);
                 return this.RedirectToAction("Details", new { id = id });
-                //return RedirectToAction("Details", "Publication", new { id = id });
             }
             catch (Exception)
             {
@@ -104,7 +103,6 @@ namespace Galatea.Web.Controllers
                 formModel.Categories = await _categoryService.GetAllCategoriesAsync();
                 return RedirectToAction("Index", "Home");
             }            
-            //return RedirectToAction("All", "Publication");
         }
 
         [HttpGet]
@@ -140,15 +138,13 @@ namespace Galatea.Web.Controllers
             {
                 return this.NotFound();
             }
-            //string? userId =
-            //   await _userService.GetUserIdAsync();
-
-            //bool isUserOwner = await _publicationService.IsUserPublicationOwnerAsync(id, userId!);
-
-            //if (!isUserOwner)
-            //{
-            //    return RedirectToAction("Index", "Home");
-            //}
+            var user = await this.userManager.GetUserAsync(this.User);
+            string? userId = user.Id.ToString();          
+            bool isUserOwner = await _publicationService.IsUserPublicationOwnerAsync(id, userId!);
+            if (!isUserOwner)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             try
             {
                 PublicationFormModel formModel = await _publicationService
@@ -180,17 +176,13 @@ namespace Galatea.Web.Controllers
             {
                 return this.NotFound();
             }
-            //string? userId =
-            //   await _userService.GetUserIdAsync();
-
-            //bool isUserOwner = await _publicationService
-            //    .IsUserWithIdOwnerOfPublicationWithIdAsync(id, userId!);
-            //if (!isUserOwner)
-            //{
-            //    TempData[ErrorMessage] = "Трябва публикацията да е ваша за да я редактирате!";
-
-            //    return RedirectToAction("All", "Publication");
-            //}
+            var user = await this.userManager.GetUserAsync(this.User);
+            string? userId = user.Id.ToString();
+            bool isUserOwner = await _publicationService.IsUserPublicationOwnerAsync(id, userId!);
+            if (!isUserOwner)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             try
             {
                 await _publicationService.EditPublicationByIdAsync(id, formModel);
@@ -212,17 +204,13 @@ namespace Galatea.Web.Controllers
             {
                 return this.NotFound();
             }
-            //string? userId =
-            //   await _userService.GetUserIdAsync();
-               
-            //bool isUserOwner = await _publicationService
-            //    .IsUserWithIdOwnerOfPublicationWithIdAsync(id, userId!);
-            //if (!isUserOwner)
-            //{
-            //    TempData[ErrorMessage] = "Трябва публикацията да е ваша за да я изтриете!";
-
-            //    return RedirectToAction("All", "Publication");
-            //}
+            var user = await this.userManager.GetUserAsync(this.User);
+            string? userId = user.Id.ToString();
+            bool isUserOwner = await _publicationService.IsUserPublicationOwnerAsync(id, userId!);
+            if (!isUserOwner)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             try
             {
                 PublicationDeleteDetailsViewModel viewModel =
