@@ -1,14 +1,17 @@
 ﻿
+using Galatea.Web.ViewModels.Category;
+using Galatea.Web.ViewModels.Publication;
+
 namespace Galatea.Web.ViewModels.Home
 {
     public class IndexViewModel
     {
-        //public string Id { get; set; } = null!;
+        public IEnumerable<CategoryPublicationSelectFormModel> Categories { get; set; } = null!;
 
-        public string Title { get; set; } = null!;
-        public string Text { get; set; } = null!;
+        
 
-        public string Image1 { get; set; } = null!;
-        public string Image2 { get; set; } = null!;
+        public IEnumerable<PublicationFormModel> Publications { get; set; } = null!;
+
+        public int AspNetUsersCount { get; set; }
     }
 }
