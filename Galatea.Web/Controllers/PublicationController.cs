@@ -1,8 +1,11 @@
-﻿using Galatea.Services.Data;
+﻿using Galatea.Data.Models;
+using Galatea.Services.Data;
 using Galatea.Services.Data.Interfaces;
 using Galatea.Services.Data.PublicationServiceModel;
 using Galatea.Web.ViewModels.Publication;
+
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -10,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using System.Security.Claims;
 
 using static Galatea.Common.NotificationMessages;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Galatea.Web.Controllers
 {
@@ -19,13 +23,16 @@ namespace Galatea.Web.Controllers
         private readonly ICategoryService _categoryService;
         private readonly IPublicationService _publicationService;
         private readonly IUserService _userService;
+        private readonly UserManager<AppUser> userManager;
 
-        public PublicationController(ICategoryService categoryService, IPublicationService publicationService, IUserService userService)
+        public PublicationController(ICategoryService categoryService, IPublicationService publicationService, IUserService userService, UserManager<AppUser> userManager)
         {
             this._categoryService = categoryService;
             this._publicationService = publicationService;
             this._userService = userService;
+            this.userManager = userManager;
         }
+
         [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> All([FromQuery] PublicationsAllQueryModel queryModel)
@@ -43,12 +50,22 @@ namespace Galatea.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Add()
         {
-            PublicationFormModel formModel = new PublicationFormModel()
+            try
             {
-                Categories = await _categoryService.GetAllCategoriesAsync()
-            };
+                PublicationFormModel formModel = new PublicationFormModel()
+                {
+                    Categories = await _categoryService.GetAllCategoriesAsync()
+                };
 
-            return View(formModel);
+                return View(formModel);
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError(string.Empty, "Грешка при добавянето на публикация. Моля опитайте по-късно!");
+
+                return RedirectToAction("Index", "Home");
+            }
+            
         }
 
         [HttpPost]
@@ -60,24 +77,32 @@ namespace Galatea.Web.Controllers
                 ModelState.AddModelError(nameof(formModel.CategoryId), "Избраната категория не съществува!");
             }
 
-
             if (!ModelState.IsValid)
             {
                 formModel.Categories = await _categoryService.GetAllCategoriesAsync();
                 return View(formModel);
             }
             try
-            {              
-                string publicationId =
-                   await _publicationService.CreateAsync(formModel);
-                
-                return RedirectToAction("Details", "Publication", new { id = publicationId });             
+            {
+                var user = await this.userManager.GetUserAsync(this.User);
+                var id = await this._publicationService.CreateAndReturnIdAsync(formModel, user.Id.ToString());
+
+                //string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);//await _userService.GetUserIdAsync();
+
+                //string publicationId =
+                //   await _publicationService.CreateAndReturnIdAsync(formModel);
+
+                //return RedirectToAction("Details", "Publication", new { id = publicationId });
+                //string publicationId =
+                //  await _publicationService.CreateAndReturnIdAsync(formModel);
+                return this.RedirectToAction("Details", new { id = id });
+                //return RedirectToAction("Details", "Publication", new { id = id });
             }
             catch (Exception)
             {
                 ModelState.AddModelError(string.Empty, "Неочаквана грешка при добавянето на обява. Моля опитайте по-късно!");
                 formModel.Categories = await _categoryService.GetAllCategoriesAsync();
-                return View(formModel);
+                return RedirectToAction("Index", "Home");
             }            
             //return RedirectToAction("All", "Publication");
         }
@@ -115,15 +140,15 @@ namespace Galatea.Web.Controllers
             {
                 return this.NotFound();
             }
-            string? userId =
-               await _userService.GetUserIdAsync();
+            //string? userId =
+            //   await _userService.GetUserIdAsync();
 
-            bool isUserOwner = await _publicationService
-                .IsUserWithIdOwnerOfPublicationWithIdAsync(id, userId!);
-            if (!isUserOwner)
-            {
-                return this.NotFound();
-            }
+            //bool isUserOwner = await _publicationService.IsUserPublicationOwnerAsync(id, userId!);
+
+            //if (!isUserOwner)
+            //{
+            //    return RedirectToAction("Index", "Home");
+            //}
             try
             {
                 PublicationFormModel formModel = await _publicationService
@@ -155,17 +180,17 @@ namespace Galatea.Web.Controllers
             {
                 return this.NotFound();
             }
-            string? userId =
-               await _userService.GetUserIdAsync();
+            //string? userId =
+            //   await _userService.GetUserIdAsync();
 
-            bool isUserOwner = await _publicationService
-                .IsUserWithIdOwnerOfPublicationWithIdAsync(id, userId!);
-            if (!isUserOwner)
-            {
-                TempData[ErrorMessage] = "Трябва публикацията да е ваша за да я редактирате!";
+            //bool isUserOwner = await _publicationService
+            //    .IsUserWithIdOwnerOfPublicationWithIdAsync(id, userId!);
+            //if (!isUserOwner)
+            //{
+            //    TempData[ErrorMessage] = "Трябва публикацията да е ваша за да я редактирате!";
 
-                return RedirectToAction("All", "Publication");
-            }
+            //    return RedirectToAction("All", "Publication");
+            //}
             try
             {
                 await _publicationService.EditPublicationByIdAsync(id, formModel);
@@ -187,17 +212,17 @@ namespace Galatea.Web.Controllers
             {
                 return this.NotFound();
             }
-            string? userId =
-               await _userService.GetUserIdAsync();
+            //string? userId =
+            //   await _userService.GetUserIdAsync();
                
-            bool isUserOwner = await _publicationService
-                .IsUserWithIdOwnerOfPublicationWithIdAsync(id, userId!);
-            if (!isUserOwner)
-            {
-                TempData[ErrorMessage] = "Трябва публикацията да е ваша за да я изтриете!";
+            //bool isUserOwner = await _publicationService
+            //    .IsUserWithIdOwnerOfPublicationWithIdAsync(id, userId!);
+            //if (!isUserOwner)
+            //{
+            //    TempData[ErrorMessage] = "Трябва публикацията да е ваша за да я изтриете!";
 
-                return RedirectToAction("All", "Publication");
-            }
+            //    return RedirectToAction("All", "Publication");
+            //}
             try
             {
                 PublicationDeleteDetailsViewModel viewModel =

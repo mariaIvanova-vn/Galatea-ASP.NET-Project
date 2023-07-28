@@ -30,8 +30,8 @@ namespace Galatea.Services.Data
         {
             Publication publication = await dbContext
                 .Publications
-                .Where(h => h.IsActive)
-                .FirstAsync(h => h.Id.ToString() == publicationId);
+                .Where(p => p.IsActive)
+                .FirstAsync(p => p.Id.ToString() == publicationId);
 
             return publication.UserId.ToString() == userId;
         }

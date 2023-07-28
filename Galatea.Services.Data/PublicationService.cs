@@ -92,15 +92,22 @@ namespace Galatea.Services.Data
             return allUserPublications;
         }
 
-        public async Task<string> CreateAsync(PublicationFormModel model)
+        
+
+        public async Task<string> CreateAndReturnIdAsync(PublicationFormModel model, string userId)
         {
             Publication publication = new Publication
             {
                 Title = model.Title,
                 Content = model.Content,
                 ImageUrl = model.ImageUrl,
+                //CreatedOn = DateTime.Now,
                 CategoryId = model.CategoryId,
+
+
             };
+            publication.UserId = Guid.Parse(userId);
+
             await dbContext.Publications.AddAsync(publication);
             await dbContext.SaveChangesAsync();
 
@@ -198,6 +205,15 @@ namespace Galatea.Services.Data
                 .FirstAsync(h => h.Id.ToString() == publicationId);
 
             return publication.UserId.ToString() == userId;
+        }
+
+        public async Task<bool> IsUserPublicationOwnerAsync(string publicationId, string userId)
+        {
+            bool isOwner = await dbContext.
+                Publications.
+                AnyAsync(c => c.Id.ToString() == publicationId && c.UserId.ToString() == userId);
+
+            return isOwner;
         }
     }
 }

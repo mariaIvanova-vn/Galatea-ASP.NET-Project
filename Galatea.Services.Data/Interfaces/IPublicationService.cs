@@ -8,7 +8,7 @@ namespace Galatea.Services.Data.Interfaces
     public interface IPublicationService
     {
 
-        Task<string> CreateAsync(PublicationFormModel model);
+        Task<string> CreateAndReturnIdAsync(PublicationFormModel model, string userId);
 
         Task<AllPublicationFilteredServiceModel> AllAsync(PublicationsAllQueryModel model);
 
@@ -27,5 +27,7 @@ namespace Galatea.Services.Data.Interfaces
         Task<PublicationDeleteDetailsViewModel> GetPublicationForDeleteAsync(string publicationId);
 
         Task DeletePublicationByIdAsync(string publicationId);
+
+        Task<bool> IsUserPublicationOwnerAsync(string publicationId, string userId);
     }
 }

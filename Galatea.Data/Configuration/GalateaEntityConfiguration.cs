@@ -46,8 +46,8 @@ namespace Galatea.Data.Configuration
                 ImageUrl = "https://www.24x7.place/media/images/objects/2017/1513689955-SN850672.JPG",
                 CreatedOn = DateTime.Now,
                 CategoryId = 2,
-                Comments = new List<Comment>(),
-                Rating = new List<Rating>(),
+                //Comments = new List<Comment>(),
+                //Rating = new List<Rating>(),
                 UserId = Guid.Parse("2F0FF2D4-B657-4CB5-3C99-08DB81F0BBC7")
             };
             publications.Add(publication);                     
