@@ -1,4 +1,5 @@
-﻿@using Galatea.Data.Models;
+﻿﻿@using Microsoft.AspNetCore.Http.Extensions
+@using Galatea.Data.Models;
 ﻿@using Galatea.Services.Data.Interfaces
 @using Galatea.Web.Infrastructure.Extensions
 @using Microsoft.AspNetCore.Identity;
@@ -22,11 +23,7 @@
                  src="@Model.ImageUrl" alt="Publication Image">
         </div>
         <div class="card col-8 border-0">
-            <style>
-                body {
-                    background-color: aliceblue;
-                }
-            </style>
+
             <p style="font-size:25px;"><u>@Model.Title</u></p>
             <p>Описание: <b>@Model.Content</b></p>
             
@@ -54,7 +51,7 @@
 <hr />
 <div class="justify-content-center"><h3>Коментари</h3></div>
 
-@*@foreach (var comment in @Model.Comments!)
+@*@foreach (var comment in Model.Comments!)
 {
     <div class="col-md-12 ftco-animate">
         <div class="job-post-item p-4 d-block d-lg-flex align-items-center">

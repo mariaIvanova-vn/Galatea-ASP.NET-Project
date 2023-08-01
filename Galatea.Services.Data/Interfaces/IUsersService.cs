@@ -13,5 +13,7 @@ namespace Galatea.Services.Data.Interfaces
         Task<bool> IsUserWithIdOwnerOfPublicationWithIdAsync(string publicationId, string userId);
 
         int GetUserCount();
+
+        public Task<string> GetUser(string id);
     }
 }

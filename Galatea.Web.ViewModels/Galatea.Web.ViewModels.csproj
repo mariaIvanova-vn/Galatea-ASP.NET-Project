@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Galatea.Common\Galatea.Common.csproj" />
+    <ProjectReference Include="..\Galatea.Data.Models\Galatea.Data.Models.csproj" />
   </ItemGroup>
 
 </Project>

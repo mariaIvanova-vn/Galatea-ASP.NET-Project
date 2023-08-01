@@ -18,7 +18,7 @@ namespace Galatea.Services.Data.Interfaces
 
         Task<bool> ExistByIdAsync(string publicationId);
 
-        Task<bool> IsUserWithIdOwnerOfPublicationWithIdAsync(string publicationId, string userId);
+        //Task<bool> IsUserWithIdOwnerOfPublicationWithIdAsync(string publicationId, string userId);
 
         Task<PublicationFormModel> GetPublicationForEditAsync(string publicationId);
 

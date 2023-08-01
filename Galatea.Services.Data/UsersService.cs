@@ -5,8 +5,12 @@ using Galatea.Web.Data;
 using Galatea.Web.ViewModels.Comments;
 using Galatea.Web.ViewModels.Publication;
 using Galatea.Web.ViewModels.Publication.Enum;
+using Galatea.Web.ViewModels.Users;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System.Linq;
+using static Galatea.Common.EntityValidationConstants;
+using Publication = Galatea.Data.Models.Publication;
 
 namespace Galatea.Services.Data
 {
@@ -17,6 +21,14 @@ namespace Galatea.Services.Data
         public UsersService(GalateaDbContext dbContext)
         {
             this.dbContext = dbContext;
+        }
+
+        public async Task<string> GetUser(string id)
+        {
+            var user = await this.dbContext.Users
+                .FirstAsync(h => h.Id.ToString() == id);
+
+            return user.UserName;
         }
 
         public int GetUserCount()

@@ -197,15 +197,15 @@ namespace Galatea.Services.Data
             };
         }
 
-        public async Task<bool> IsUserWithIdOwnerOfPublicationWithIdAsync(string publicationId, string userId)
-        {
-            Publication publication = await dbContext
-                .Publications
-                .Where(h => h.IsActive)
-                .FirstAsync(h => h.Id.ToString() == publicationId);
+        //public async Task<bool> IsUserWithIdOwnerOfPublicationWithIdAsync(string publicationId, string userId)
+        //{
+        // var publication = await dbContext
+        //        .Publications
+        //        .Where(h => h.IsActive)
+        //        .FirstAsync(h => h.Id.ToString() == publicationId);
 
-            return publication.UserId.ToString() == userId;
-        }
+        //    return publication.UserId.ToString() == userId;
+        //}
 
         public async Task<bool> IsUserPublicationOwnerAsync(string publicationId, string userId)
         {

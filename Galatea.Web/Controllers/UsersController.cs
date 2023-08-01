@@ -1,6 +1,9 @@
 ﻿using Galatea.Data.Models;
 using Galatea.Services.Data;
 using Galatea.Services.Data.Interfaces;
+using Galatea.Web.ViewModels.Comments;
+using Galatea.Web.ViewModels.Users;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,9 +22,12 @@ namespace Galatea.Web.Controllers
             this.commentService = commentService;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+        //[Authorize]
+        //public IActionResult UserProfile(string id)
+        //{
+        //    var user = this.userService.GetUser(id);
+        //    user = this.commentService.GetCommentByUserId<CommentViewModel>(id).ToList();
+        //    return this.View(user);
+        //}
     }
 }
