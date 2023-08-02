@@ -21,6 +21,11 @@ namespace Galatea.Web.Controllers
             this.userService = userService;
             this.commentService = commentService;
         }
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View();
+        }
 
         //[Authorize]
         //public IActionResult UserProfile(string id)
