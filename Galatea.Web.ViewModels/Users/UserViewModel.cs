@@ -11,6 +11,11 @@ namespace Galatea.Web.ViewModels.Users
 {
     public class UserViewModel 
     {
+        public UserViewModel()
+        {
+            this.Publications = new HashSet<PublicationFormModel>();
+            this.Comments = new HashSet<CommentViewModel>();
+        }
         public string Id { get; set; } = null!;
 
         public string UserName { get; set; } = null!;
@@ -19,9 +24,9 @@ namespace Galatea.Web.ViewModels.Users
 
         public Gender Gender { get; set; }
 
-        public virtual ICollection<PublicationFormModel> Publications { get; set; } = null!;
+        public virtual ICollection<PublicationFormModel> Publications { get; set; } 
 
-        public virtual ICollection<CommentViewModel> Comments { get; set; } = null!;
+        public virtual ICollection<CommentViewModel> Comments { get; set; } 
 
         //public virtual ICollection<UserOpinion> UserOpinions { get; set; }
 

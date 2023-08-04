@@ -61,13 +61,13 @@
         <div class="job-post-item p-4 d-block d-lg-flex align-items-center">
             <div class="one-third mb-4 mb-md-0">
                 <div class="align-items-center">
-                    <img src="@comment.UserProfilePictureUrl" class="avatar rounded-circle" />
+                    
                     <p>
                         <a asp-controller="Users" asp-action="UserProfile" asp-route-id="@comment.UserId" class="text-secondary text-left"><strong>@comment.UserName</strong></a>
                     </p>                   
                         <p>@comment.Text</p>
                         <time datetime="@comment.CreatedOn.ToString("O")"></time>
-                        @if (comment.UserId == userService.GetUserIdAsync().ToString())
+                    @if (isUserOwnerOfThePublication)
                         {
                             <a class="btn btn-danger" type="submit" asp-controller="Comments" asp-action="Delete" asp-route-commentId="@comment.Id">Изтрий</a>
                         }                    

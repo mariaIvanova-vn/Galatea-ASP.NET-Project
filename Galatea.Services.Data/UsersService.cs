@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System.Linq;
 using static Galatea.Common.EntityValidationConstants;
+using AppUser = Galatea.Data.Models.AppUser;
 using Publication = Galatea.Data.Models.Publication;
 
 namespace Galatea.Services.Data
@@ -23,12 +24,23 @@ namespace Galatea.Services.Data
             this.dbContext = dbContext;
         }
 
-        public async Task<string> GetUser(string id)
-        {
-            var user = await this.dbContext.Users
-                .FirstAsync(h => h.Id.ToString() == id);
+        //public async Task<string> GetUser(string id)
+        //{
+        //    var user = await this.dbContext.Users
+        //            .FirstAsync(x => x.Id.ToString() == id);
 
-            return user.UserName;
+        //    return user.UserName;
+        //}
+        public async Task<UserViewModel> GetUser(string id)
+        {
+            AppUser user = await dbContext.Users.FirstAsync(x=>x.Id.ToString() == id);  
+
+            
+            return new UserViewModel
+            {
+                UserName = user.UserName,
+                Comments = (ICollection<CommentViewModel>)user.CommentsPublications
+            };
         }
 
         public int GetUserCount()

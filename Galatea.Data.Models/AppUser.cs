@@ -13,6 +13,7 @@ namespace Galatea.Data.Models
             this.UsersPublications = new HashSet<Publication>();
             this.GivenRatings = new HashSet<Rating>();
             this.UserResponses = new HashSet<UserResponse>();
+            this.CommentsPublications = new HashSet<Comment>();
         }
         //[Required]
         //[MaxLength(FirstNameMaxLength)]
@@ -26,6 +27,8 @@ namespace Galatea.Data.Models
 
 
         public virtual ICollection<Publication> UsersPublications { get; set; }
+
+        public virtual ICollection<Comment> CommentsPublications { get; set; }
 
         public virtual ICollection<UserResponse> UserResponses { get; set; }
 

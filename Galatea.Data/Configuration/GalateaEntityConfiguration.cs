@@ -32,7 +32,16 @@ namespace Galatea.Data.Configuration
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasData(this.GeneratePublication());
+            builder.HasData(this.GenerateComment());
         }
+
+        private Comment[] GenerateComment()
+        {
+            ICollection<Comment> comments = new HashSet<Comment>();
+
+            return comments.ToArray();
+        }
+
         private Publication[] GeneratePublication()
         {
             ICollection<Publication> publications = new HashSet<Publication>();

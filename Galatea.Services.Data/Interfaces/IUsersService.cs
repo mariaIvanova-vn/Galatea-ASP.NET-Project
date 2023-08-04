@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Galatea.Web.ViewModels.Users;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,6 @@ namespace Galatea.Services.Data.Interfaces
 
         int GetUserCount();
 
-        public Task<string> GetUser(string id);
+        public Task<UserViewModel> GetUser(string id);
     }
 }

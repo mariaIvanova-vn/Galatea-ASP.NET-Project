@@ -47,7 +47,7 @@ namespace Galatea.Services.Data
                 UserId = Guid.Parse(commentInputModel.UserId),
             };
 
-            await this.dbContext.AddAsync(comment);
+            await this.dbContext.Comments.AddAsync(comment);
             await this.dbContext.SaveChangesAsync();
             return comment.Id.ToString();
         }
@@ -55,6 +55,20 @@ namespace Galatea.Services.Data
         public Task<int> DeleteAsync(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<CommentViewModel> GetCommentByUserIdAsync(string userId)
+        {
+            var comment = await this.dbContext.Comments
+                    .FirstAsync(x => x.UserId.ToString() == userId);
+
+            return new CommentViewModel
+            {
+                Text = comment.Text,
+                CreatedOn = DateTime.UtcNow,
+                PublicationId= comment.PublicationId.ToString(),
+                UserId = comment.UserId.ToString(),
+            };
         }
 
         //public async Task<CommentInputModel> GetCommentByPostId(string publicationId)

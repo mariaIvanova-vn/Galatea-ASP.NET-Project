@@ -9,6 +9,8 @@ namespace Galatea.Services.Data.Interfaces
 
         //Task<CommentInputModel> GetCommentByPostId(string publicationId);
 
+        Task<CommentViewModel> GetCommentByUserIdAsync(string userId);
+
         Task<IEnumerable<CommentInputModel>> AllByPublicationIdAsync(string publicationId);
 
         Task<int> DeleteAsync(int id);       
