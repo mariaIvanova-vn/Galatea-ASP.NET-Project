@@ -26,7 +26,7 @@ namespace Galatea.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(commentInputModel);
+                return this.RedirectToAction("Details", "Publication", new { id = commentInputModel.PublicationId });
             }
             try
             {

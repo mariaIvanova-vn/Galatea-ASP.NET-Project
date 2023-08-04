@@ -64,44 +64,46 @@
                     <img src="@comment.UserProfilePictureUrl" class="avatar rounded-circle" />
                     <p>
                         <a asp-controller="Users" asp-action="UserProfile" asp-route-id="@comment.UserId" class="text-secondary text-left"><strong>@comment.UserName</strong></a>
-                    </p>
-
-                    <p>@comment.Text</p>
-                    <time datetime="@comment.CreatedOn.ToString("O")"></time>
-                    @if (comment.UserId == userService.GetUserIdAsync().ToString())
-                    {
-                        <a class="btn btn-danger" type="submit" asp-controller="Comments" asp-action="Delete" asp-route-commentId="@comment.Id">Изтрий</a>
-                    }
+                    </p>                   
+                        <p>@comment.Text</p>
+                        <time datetime="@comment.CreatedOn.ToString("O")"></time>
+                        @if (comment.UserId == userService.GetUserIdAsync().ToString())
+                        {
+                            <a class="btn btn-danger" type="submit" asp-controller="Comments" asp-action="Delete" asp-route-commentId="@comment.Id">Изтрий</a>
+                        }                    
                 </div>
             </div>
         </div>
 
     </div>
 }
+@if (User.Identity?.IsAuthenticated ?? false)
+{
+    <section class="ftco-section bg-light">
+        <div class="container">
+            <div class="row">
 
-<section class="ftco-section bg-light">
-    <div class="container">
-        <div class="row">
+                <div class="col-md-12 col-lg-12 mb-5">
 
-            <div class="col-md-12 col-lg-12 mb-5">
+                    <form method="post" class="p-5 bg-white">
 
-                <form method="post" class="p-5 bg-white">
-
-                    <div class="row form-group">
-                        <div class="col-md-12"><h3>Коментирай</h3></div>
-                        <div class="col-md-12 mb-3 mb-md-0">
-                            <textarea name="text" class="form-control" id="" cols="30" rows="5"></textarea>
+                        <div class="row form-group">
+                            <div class="col-md-12"><h3>Коментирай</h3></div>
+                            <div class="col-md-12 mb-3 mb-md-0">
+                                <textarea name="text" class="form-control" id="" cols="30" rows="5"></textarea>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col-md-12">
-                            <input type="submit" value="Изпрати" asp-controller="Comments" asp-action="Create" asp-route-PublicationId="@Model.Id" asp-route-UserId="@User.GetId()" class="btn btn-primary  py-2 px-5">
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <input type="submit" value="Изпрати" asp-controller="Comments" asp-action="Create" asp-route-PublicationId="@Model.Id" asp-route-UserId="@User.GetId()" class="btn btn-primary  py-2 px-5">
+                            </div>
                         </div>
-                    </div>
 
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+}
+
 
