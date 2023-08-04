@@ -7,8 +7,8 @@ namespace Galatea.Web.ViewModels.Comments
 
         public string Text { get; set; } = null!;
 
-        public Guid UserId { get; set; } 
+        public string UserId { get; set; } = null!;
 
-        public Guid PublicationId { get; set; } 
+        public string PublicationId { get; set; } = null!;
     }
 }

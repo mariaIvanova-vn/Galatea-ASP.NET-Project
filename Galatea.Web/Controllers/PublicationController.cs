@@ -2,6 +2,7 @@
 using Galatea.Services.Data;
 using Galatea.Services.Data.Interfaces;
 using Galatea.Services.Data.PublicationServiceModel;
+using Galatea.Web.ViewModels.Comments;
 using Galatea.Web.ViewModels.Publication;
 
 using Microsoft.AspNetCore.Authorization;
@@ -10,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Security.Claims;
 
 using static Galatea.Common.NotificationMessages;
@@ -22,15 +24,18 @@ namespace Galatea.Web.Controllers
     {
         private readonly ICategoryService _categoryService;
         private readonly IPublicationService _publicationService;
+        private readonly ICommentsService _commentsService;
         private readonly IUsersService _userService;
         private readonly UserManager<AppUser> userManager;
 
-        public PublicationController(ICategoryService categoryService, IPublicationService publicationService, IUsersService userService, UserManager<AppUser> userManager)
+        public PublicationController(ICategoryService categoryService, IPublicationService publicationService, IUsersService userService, UserManager<AppUser> userManager, ICommentsService commentsService)
         {
             this._categoryService = categoryService;
             this._publicationService = publicationService;
             this._userService = userService;
             this.userManager = userManager;
+            this._commentsService = commentsService; 
+
         }
 
         [HttpGet]
@@ -86,15 +91,7 @@ namespace Galatea.Web.Controllers
             {
                 var user = await this.userManager.GetUserAsync(this.User);
                 var id = await this._publicationService.CreateAndReturnIdAsync(formModel, user.Id.ToString());
-
-                //string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);//await _userService.GetUserIdAsync();
-
-                //string publicationId =
-                //   await _publicationService.CreateAndReturnIdAsync(formModel);
-
-                //return RedirectToAction("Details", "Publication", new { id = publicationId });
-                //string publicationId =
-                //  await _publicationService.CreateAndReturnIdAsync(formModel);
+                         
                 return this.RedirectToAction("Details", new { id = id });
             }
             catch (Exception)

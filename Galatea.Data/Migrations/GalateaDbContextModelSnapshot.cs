@@ -125,9 +125,11 @@ namespace Galatea.Data.Migrations
 
             modelBuilder.Entity("Galatea.Data.Models.Comment", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<Guid>("PublicationId")
                         .HasColumnType("uniqueidentifier");
@@ -196,10 +198,10 @@ namespace Galatea.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("f4adb3f2-943e-4769-aaec-0c5af88d9969"),
+                            Id = new Guid("dc1af0df-b3d3-4684-bd93-55e1a0f14b89"),
                             CategoryId = 2,
                             Content = "Квартален магазин за хранителни стоки търси персонал. За повече информация - 0888888888",
-                            CreatedOn = new DateTime(2023, 7, 23, 14, 29, 14, 490, DateTimeKind.Local).AddTicks(2799),
+                            CreatedOn = new DateTime(2023, 8, 3, 12, 41, 13, 509, DateTimeKind.Local).AddTicks(2837),
                             ImageUrl = "https://www.24x7.place/media/images/objects/2017/1513689955-SN850672.JPG",
                             IsActive = false,
                             Title = "Търся персонал",
