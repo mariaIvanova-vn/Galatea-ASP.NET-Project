@@ -1,3 +1,8 @@
+using Galatea.Services.Data.Interfaces;
+using Galatea.Web.Data;
+using Galatea.Web.Infrastructure.Extensions;
+using Microsoft.EntityFrameworkCore;
+
 namespace Galatea.WebAPI
 {
     public class Program
@@ -6,16 +11,31 @@ namespace Galatea.WebAPI
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+            builder.Services.AddDbContext<GalateaDbContext>(opt =>
+                opt.UseSqlServer(connectionString));
+
+            builder.Services.AddApplicationServices(typeof(IPublicationService));
 
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            builder.Services.AddCors(setup =>
+            {
+                setup.AddPolicy("Galatea", policyBuilder =>
+                {
+                    policyBuilder
+                        .WithOrigins("https://localhost:7126")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
+
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
@@ -26,8 +46,9 @@ namespace Galatea.WebAPI
 
             app.UseAuthorization();
 
-
             app.MapControllers();
+
+            app.UseCors("Galatea");
 
             app.Run();
         }

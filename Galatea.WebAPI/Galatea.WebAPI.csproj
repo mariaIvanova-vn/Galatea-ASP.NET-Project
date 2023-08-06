@@ -1,13 +1,21 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>36d5c203-787e-49fb-beda-ad84d0b1c906</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Galatea.Common\Galatea.Common.csproj" />
+    <ProjectReference Include="..\Galatea.Data.Models\Galatea.Data.Models.csproj" />
+    <ProjectReference Include="..\Galatea.Services.Data\Galatea.Services.Data.csproj" />
+    <ProjectReference Include="..\Galatea.Web.Infrastructure\Galatea.Web.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
