@@ -1,5 +1,6 @@
 ﻿
 using Galatea.Services.Data.PublicationServiceModel;
+using Galatea.Services.Data.Statistics;
 using Galatea.Web.ViewModels.Publication;
 
 
@@ -29,5 +30,7 @@ namespace Galatea.Services.Data.Interfaces
         Task DeletePublicationByIdAsync(string publicationId);
 
         Task<bool> IsUserPublicationOwnerAsync(string publicationId, string userId);
+
+        Task<StatisticsServiceModel> GetStatisticsAsync();
     }
 }

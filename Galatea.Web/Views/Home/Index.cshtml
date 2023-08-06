@@ -15,7 +15,10 @@
     <center>
         <font face="Arial" size="5"><b> Официален сайт на квартал Галата - град Варна </b> </font> <br>
     </center>
-
+    <br>
+    <center>
+        <font face="Arial" size="5"><b> Място за търсене, предлагане и споделяне на информация </b> </font> <br>
+    </center>
     <br>
     <br>
 
@@ -34,3 +37,28 @@
 </body>
 
 </html>
+
+<div class="mb-5"></div>
+
+<div class="row">
+    <div class="col-12 text-center">
+        <button class="btn btn-primary" id="statistics_btn">Покажи статистика</button>
+    </div>
+</div>
+
+<div class="mt-4 p-5 bg-light d-none" id="statistics_box">
+    <div class="row">
+        <h2 class="col-md-6 text-center" id="total_publications"></h2>
+        <h2 class="col-md-6 text-center" id="total_users"></h2>
+    </div>
+</div>
+
+@section Scripts
+    {
+    <style>
+             body {
+                 background-color: aliceblue;
+             }
+    </style>
+    <script>statistics();</script>
+}

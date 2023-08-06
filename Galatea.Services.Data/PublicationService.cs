@@ -2,6 +2,7 @@
 using Galatea.Data.Models;
 using Galatea.Services.Data.Interfaces;
 using Galatea.Services.Data.PublicationServiceModel;
+using Galatea.Services.Data.Statistics;
 using Galatea.Web.Data;
 using Galatea.Web.ViewModels.Comments;
 using Galatea.Web.ViewModels.Publication;
@@ -194,6 +195,15 @@ namespace Galatea.Services.Data
                 Content = publication.Content,
                 ImageUrl = publication.ImageUrl,
                 CategoryId = publication.CategoryId
+            };
+        }
+
+        public async Task<StatisticsServiceModel> GetStatisticsAsync()
+        {
+            return new StatisticsServiceModel()
+            {
+                TotalPublications = await dbContext.Publications.CountAsync(),
+                TotalUsers = await dbContext.Users.CountAsync()
             };
         }
 
