@@ -63,7 +63,7 @@
                 <div class="align-items-center">
                     
                     <p>
-                        <a asp-controller="Users" asp-action="UserProfile" asp-route-id="@comment.UserId" class="text-secondary text-left"><strong>@comment.UserName</strong></a>
+                        <a asp-controller="User" asp-action="UserProfile" asp-route-id="@comment.UserId" class="text-secondary text-left"><strong>@comment.UserName</strong></a>
                     </p>                   
                         <p>@comment.Text</p>
                         <time datetime="@comment.CreatedOn.ToString("O")"></time>

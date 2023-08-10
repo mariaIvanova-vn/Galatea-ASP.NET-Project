@@ -2,8 +2,11 @@ using Galatea.Data.Models;
 using Galatea.Services.Data.Interfaces;
 using Galatea.Web.Data;
 using Galatea.Web.Infrastructure.Extensions;
-
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+
+using static Galatea.Common.GeneralConstants;
 
 namespace Galatea.Web
 {
@@ -32,11 +35,26 @@ namespace Galatea.Web
                 options.Password.RequiredLength =
                     builder.Configuration.GetValue<int>("Identity:Password:RequiredLength");
             })
+                .AddRoles<IdentityRole<Guid>>()
                 .AddEntityFrameworkStores<GalateaDbContext>();
 
             builder.Services.AddApplicationServices(typeof(IPublicationService));
 
-            builder.Services.AddControllersWithViews();
+            builder.Services.AddMemoryCache();
+            builder.Services.AddResponseCaching();
+
+            builder.Services.ConfigureApplicationCookie(cfg =>
+            {
+                cfg.LoginPath = "/User/Login";
+                cfg.AccessDeniedPath = "/Home/Error/401";
+            });
+
+            builder.Services
+               .AddControllersWithViews()
+               .AddMvcOptions(options =>
+               {
+                   options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
+               });
 
             WebApplication app = builder.Build();
 
@@ -60,6 +78,8 @@ namespace Galatea.Web
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.SeedAdministrator(DevelopmentAdminEmail);
 
             app.MapDefaultControllerRoute();
             app.MapRazorPages();

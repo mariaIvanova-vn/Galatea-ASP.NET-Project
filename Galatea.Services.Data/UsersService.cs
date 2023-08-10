@@ -38,7 +38,6 @@ namespace Galatea.Services.Data
             
             return new UserViewModel
             {
-                UserName = user.UserName,
                 Comments = (ICollection<CommentViewModel>)user.CommentsPublications
             };
         }

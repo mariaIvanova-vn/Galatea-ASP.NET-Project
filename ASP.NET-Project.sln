@@ -23,7 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Galatea.Services.Data", "Ga
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Galatea.Web.Infrastructure", "Galatea.Web.Infrastructure\Galatea.Web.Infrastructure.csproj", "{FE5AC2DB-8407-40EA-848D-467CCE234ED6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Galatea.WebAPI", "Galatea.WebAPI\Galatea.WebAPI.csproj", "{D465996D-9DBE-4ADC-818B-0822EDEADD4C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Galatea.WebAPI", "Galatea.WebAPI\Galatea.WebAPI.csproj", "{D465996D-9DBE-4ADC-818B-0822EDEADD4C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ScreenShoots", "ScreenShoots", "{27A92794-0E14-4A2D-A26D-C65CE43E8655}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

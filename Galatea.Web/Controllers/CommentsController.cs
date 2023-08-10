@@ -43,13 +43,17 @@ namespace Galatea.Web.Controllers
         }
 
         [Authorize]
-        public async Task<IActionResult> Delete(int commentId)
+        public async Task<IActionResult> Delete(string commentId)
         {
-            var currentUrl = this.HttpContext.Request.Headers.FirstOrDefault(x => x.Key == "Referer").Value;
-            var announcementId = await this.commentService.DeleteAsync(commentId);
-            return this.Redirect(currentUrl);
-        }
+            //var currentUrl = this.HttpContext.Request.Headers.FirstOrDefault(x => x.Key == "Referer").Value;
+            //var announcementId = await this.commentService.DeleteAsync(commentId);
+            //return this.Redirect(currentUrl);
 
+            await commentService.DeleteAsync(commentId);
+
+            return RedirectToAction("MyPublications", "Publication");
+
+        }
         //[HttpGet]
         //public async Task<IActionResult> PublicationComments()
         //{

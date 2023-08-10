@@ -17,7 +17,7 @@ namespace Galatea.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.18")
+                .HasAnnotation("ProductVersion", "6.0.20")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -125,11 +125,9 @@ namespace Galatea.Data.Migrations
 
             modelBuilder.Entity("Galatea.Data.Models.Comment", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("PublicationId")
                         .HasColumnType("uniqueidentifier");
@@ -198,35 +196,32 @@ namespace Galatea.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("dc1af0df-b3d3-4684-bd93-55e1a0f14b89"),
+                            Id = new Guid("ba278fce-d97d-4cd1-8030-3dcc3dac49a2"),
                             CategoryId = 2,
                             Content = "Квартален магазин за хранителни стоки търси персонал. За повече информация - 0888888888",
-                            CreatedOn = new DateTime(2023, 8, 3, 12, 41, 13, 509, DateTimeKind.Local).AddTicks(2837),
+                            CreatedOn = new DateTime(2023, 8, 10, 13, 56, 36, 879, DateTimeKind.Local).AddTicks(8193),
                             ImageUrl = "https://www.24x7.place/media/images/objects/2017/1513689955-SN850672.JPG",
-                            IsActive = false,
+                            IsActive = true,
                             Title = "Търся персонал",
-                            UserId = new Guid("2f0ff2d4-b657-4cb5-3c99-08db81f0bbc7")
+                            UserId = new Guid("4305f537-df35-473e-aebc-97c32ade996c")
                         });
                 });
 
             modelBuilder.Entity("Galatea.Data.Models.Rating", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("PublicationId")
+                    b.Property<Guid?>("PublicationId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<double>("TotalRating")
                         .HasColumnType("float");
 
-                    b.Property<Guid>("UserId")
+                    b.Property<Guid?>("UserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PublicationId");
 
                     b.HasIndex("UserId");
 
@@ -263,7 +258,7 @@ namespace Galatea.Data.Migrations
                     b.Property<Guid>("ResponseId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("UserId")
+                    b.Property<Guid?>("UserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -419,7 +414,7 @@ namespace Galatea.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("Galatea.Data.Models.AppUser", "User")
-                        .WithMany()
+                        .WithMany("CommentsPublications")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -452,15 +447,13 @@ namespace Galatea.Data.Migrations
                 {
                     b.HasOne("Galatea.Data.Models.Publication", "Publication")
                         .WithMany("Rating")
-                        .HasForeignKey("PublicationId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Galatea.Data.Models.AppUser", "User")
                         .WithMany("GivenRatings")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Publication");
 
@@ -477,9 +470,7 @@ namespace Galatea.Data.Migrations
 
                     b.HasOne("Galatea.Data.Models.AppUser", "User")
                         .WithMany("UserResponses")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Response");
 
@@ -539,6 +530,8 @@ namespace Galatea.Data.Migrations
 
             modelBuilder.Entity("Galatea.Data.Models.AppUser", b =>
                 {
+                    b.Navigation("CommentsPublications");
+
                     b.Navigation("GivenRatings");
 
                     b.Navigation("UserResponses");

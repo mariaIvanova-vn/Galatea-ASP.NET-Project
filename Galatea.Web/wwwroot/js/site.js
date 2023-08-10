@@ -1,4 +1,4 @@
-﻿function statistics() {
+﻿function statistics() {   
     $('#statistics_btn').on('click', function (e) {
         e.preventDefault();
         e.stopPropagation();

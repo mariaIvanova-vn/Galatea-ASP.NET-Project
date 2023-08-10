@@ -13,6 +13,6 @@ namespace Galatea.Services.Data.Interfaces
 
         Task<IEnumerable<CommentInputModel>> AllByPublicationIdAsync(string publicationId);
 
-        Task<int> DeleteAsync(int id);       
+        Task DeleteAsync(string id);      
     }
 }

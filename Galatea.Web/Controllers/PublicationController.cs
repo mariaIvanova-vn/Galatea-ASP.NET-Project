@@ -116,6 +116,9 @@ namespace Galatea.Web.Controllers
             {
                 PublicationDetails publicationDetails = await _publicationService.GetDetailsByIdAsync(id);
 
+                //var comments = await this._commentsService.GetCommentByUserIdAsync(id);
+                //publicationDetails.Comments = (IEnumerable<CommentViewModel>)comments;
+                   
                 return View(publicationDetails);
             }
             catch (Exception)

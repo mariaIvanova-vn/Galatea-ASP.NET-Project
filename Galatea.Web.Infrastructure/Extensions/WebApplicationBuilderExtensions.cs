@@ -1,5 +1,11 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Galatea.Data.Models;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
+
+using static Galatea.Common.GeneralConstants;
+
 
 namespace Galatea.Web.Infrastructure.Extensions
 {
@@ -29,6 +35,40 @@ namespace Galatea.Web.Infrastructure.Extensions
 
                 services.AddScoped(interfaceType, implementationType);
             }
+        }
+
+        public static IApplicationBuilder SeedAdministrator(this IApplicationBuilder app, string email)
+        {
+            using IServiceScope scopedServices = app.ApplicationServices.CreateScope();
+
+            IServiceProvider serviceProvider = scopedServices.ServiceProvider;
+
+            UserManager<AppUser> userManager =
+                serviceProvider.GetRequiredService<UserManager<AppUser>>();
+            RoleManager<IdentityRole<Guid>> roleManager =
+                serviceProvider.GetRequiredService<RoleManager<IdentityRole<Guid>>>();
+
+            Task.Run(async () =>
+            {
+                if (await roleManager.RoleExistsAsync(AdminRoleName))
+                {
+                    return;
+                }
+
+                IdentityRole<Guid> role =
+                    new IdentityRole<Guid>(AdminRoleName);
+
+                await roleManager.CreateAsync(role);
+
+                AppUser adminUser =
+                    await userManager.FindByEmailAsync(email);
+
+                await userManager.AddToRoleAsync(adminUser, AdminRoleName);
+            })
+            .GetAwaiter()
+            .GetResult();
+
+            return app;
         }
     }
 }

@@ -16,13 +16,14 @@ namespace Galatea.Web.ViewModels.Users
             this.Publications = new HashSet<PublicationFormModel>();
             this.Comments = new HashSet<CommentViewModel>();
         }
+
         public string Id { get; set; } = null!;
 
-        public string UserName { get; set; } = null!;
+        public string Email { get; set; } = null!;
 
-        public string ProfilePictureUrl { get; set; } = null!;
+        public string FullName { get; set; } = null!;
 
-        public Gender Gender { get; set; }
+        public string PhoneNumber { get; set; } = null!;       
 
         public virtual ICollection<PublicationFormModel> Publications { get; set; } 
 
