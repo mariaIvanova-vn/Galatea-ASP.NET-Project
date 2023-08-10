@@ -8,11 +8,10 @@ namespace Galatea.Data.Models
         [Key]
         public int Id { get; set; }
 
-        public Guid UserId { get; set; }
+        public Guid? UserId { get; set; }
 
         [ForeignKey(nameof(UserId))]
-        public virtual AppUser User { get; set; } = null!;
-
+        public virtual AppUser? User { get; set; }
 
         public Guid ResponseId { get; set; }
 
