@@ -67,7 +67,7 @@
                     </p>                   
                         <p>@comment.Text</p>
                         <time datetime="@comment.CreatedOn.ToString("O")"></time>
-                    @if (isUserOwnerOfThePublication)
+                    @if (isUserOwnerOfThePublication || User.IsAdmin())
                         {
                             <a class="btn btn-danger" type="submit" asp-controller="Comments" asp-action="Delete" asp-route-commentId="@comment.Id">Изтрий</a>
                         }                    
