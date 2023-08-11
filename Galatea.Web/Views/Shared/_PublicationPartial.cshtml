@@ -21,16 +21,16 @@
             
            
             <br />
-            <a asp-controller="Publication" asp-action="Details" asp-route-id="@Model.Id"
+            <a asp-area="" asp-controller="Publication" asp-action="Details" asp-route-id="@Model.Id"
                class="btn btn-info">Детайли</a>
 
             @if (User.Identity?.IsAuthenticated ?? false)
             {
                 @if (isUserOwnerOfThePublication || User.IsAdmin())
                 {
-                    <a asp-controller="Publication" asp-action="Edit" asp-route-id="@Model.Id"
+                    <a asp-area="" asp-controller="Publication" asp-action="Edit" asp-route-id="@Model.Id"
                        class="btn btn-info">Редактирай</a>
-                    <a asp-controller="Publication" asp-action="Delete" asp-route-id="@Model.Id"
+                    <a asp-area="" asp-controller="Publication" asp-action="Delete" asp-route-id="@Model.Id"
                        class="btn btn-info">Изтрий</a>
                 }                    
 

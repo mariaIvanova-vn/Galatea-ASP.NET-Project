@@ -16,5 +16,7 @@ namespace Galatea.Services.Data.Interfaces
         int GetUserCount();
 
         public Task<UserViewModel> GetUser(string id);
+
+        Task<IEnumerable<UserViewModel>> AllAsync();
     }
 }

@@ -16,6 +16,7 @@ using System.Security.Claims;
 
 using static Galatea.Common.NotificationMessages;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using static Galatea.Common.GeneralConstants;
 
 namespace Galatea.Web.Controllers
 {
@@ -256,6 +257,11 @@ namespace Galatea.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> MyPublications()
         {
+            if (this.User.IsInRole(AdminRoleName))
+            {
+                return this.RedirectToAction("Mine", "Publication", new { Area = AdminAreaName });
+            }
+
             var myPublication = new List<PublicationAllViewModel>();
 
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);

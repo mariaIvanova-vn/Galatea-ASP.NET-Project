@@ -6,7 +6,7 @@ using Galatea.Data.Models;
 
 namespace Galatea.Web.ViewModels.Publication
 {
-    public class PublicationAllViewModel : IMapFrom<Galatea.Data.Models.Publication>
+    public class PublicationAllViewModel : IMapFrom<Data.Models.Publication>
     {
         public string Id { get; set; } = null!;
 

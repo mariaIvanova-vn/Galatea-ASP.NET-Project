@@ -24,6 +24,21 @@ namespace Galatea.Services.Data
             this.dbContext = dbContext;
         }
 
+        public async Task<IEnumerable<UserViewModel>> AllAsync()
+        {
+            List<UserViewModel> allUsers = await this.dbContext
+                .Users
+                .Select(u => new UserViewModel()
+                {
+                    Id = u.Id.ToString(),
+                    Email = u.Email,
+                    PhoneNumber = u.PhoneNumber
+                    
+                }).ToListAsync();
+
+            return allUsers;
+        }
+
         //public async Task<string> GetUser(string id)
         //{
         //    var user = await this.dbContext.Users

@@ -3,6 +3,8 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
+using static Galatea.Common.GeneralConstants;
+
 namespace Galatea.Web.Controllers
 {
     public class HomeController : Controller
@@ -13,6 +15,11 @@ namespace Galatea.Web.Controllers
 
         public IActionResult Index()
         {
+            if (this.User.IsInRole(AdminRoleName))
+            {
+                return this.RedirectToAction("Index", "Home", new { Area = AdminAreaName });
+            }
+
             return View();
         }
 
