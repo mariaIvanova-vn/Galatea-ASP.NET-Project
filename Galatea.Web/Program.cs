@@ -43,6 +43,8 @@ namespace Galatea.Web
 
             builder.Services.AddApplicationServices(typeof(IPublicationService));
 
+            builder.Services.AddRecaptchaService();
+
             builder.Services.AddMemoryCache();
             builder.Services.AddResponseCaching();
 
