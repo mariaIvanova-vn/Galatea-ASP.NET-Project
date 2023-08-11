@@ -10,12 +10,12 @@ namespace Galatea.Web.Areas.Admin.Controllers
     public class UserController : BaseAdminController
     {
         private readonly IUsersService usersService;
-        //private readonly IMemoryCache memoryCache;
+        private readonly IMemoryCache memoryCache;
 
         public UserController(IUsersService usersService, IMemoryCache memoryCache)
         {
             this.usersService = usersService;
-            //this.memoryCache = memoryCache;
+            this.memoryCache = memoryCache;
         }
 
         [Route("User/All")]
@@ -23,10 +23,10 @@ namespace Galatea.Web.Areas.Admin.Controllers
         public async Task<IActionResult> All()
         {
             var users =await this.usersService.AllAsync();
-                
+
             //if (users == null)
             //{
-            //    users = await this.userService.AllAsync();
+            //    users = await this.usersService.AllAsync();
 
             //    MemoryCacheEntryOptions cacheOptions = new MemoryCacheEntryOptions()
             //        .SetAbsoluteExpiration(TimeSpan

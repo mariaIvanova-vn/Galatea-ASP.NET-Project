@@ -22,21 +22,25 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
+                        <div>
+                            <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">Всички</a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <li>
+                                    <a class="dropdown-item nav-link text-dark" asp-area="" asp-controller="Publication" asp-action="All">Всички Публикации</a>
+                                    <a class="dropdown-item nav-link text-dark" asp-area="Admin" asp-controller="User" asp-action="All">Всички потребители</a>
+                                </li>
+                            </ul>
+                        </div>
+
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Information" asp-action="Information">Информация</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Publication" asp-action="All">Публикации</a>
-                        </li>
-                        @if (this.User.Identity?.IsAuthenticated ?? false)
-                        {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Publication" asp-action="MyPublications">Моите Публикации</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Publication" asp-action="Add">Добави Публикация</a>
                             </li>
-                        }
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
