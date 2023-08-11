@@ -3,6 +3,7 @@ using Galatea.Data.Models;
 using Galatea.Services.Data.Interfaces;
 using Galatea.Services.Data.PublicationServiceModel;
 using Galatea.Services.Data.Statistics;
+using Galatea.Services.Mapping;
 using Galatea.Web.Data;
 using Galatea.Web.ViewModels.Comments;
 using Galatea.Web.ViewModels.Publication;
@@ -60,13 +61,7 @@ namespace Galatea.Services.Data
                 .Where(p=>p.IsActive)
                 .Skip((model.CurrentPage - 1) * model.PublicationsPerPage)
                 .Take(model.PublicationsPerPage)
-                .Select(p => new PublicationAllViewModel
-                {
-                    Id = p.Id.ToString(),
-                    Title = p.Title,
-                    Content = p.Content,
-                    ImageUrl = p.ImageUrl,                  
-                })
+                .To<PublicationAllViewModel>()
                 .ToArrayAsync();
             int totalPublication = publicationsQuery.Count();
 
@@ -81,14 +76,8 @@ namespace Galatea.Services.Data
         {
             IEnumerable<PublicationAllViewModel> allUserPublications = await this.dbContext
                 .Publications.Where(p=>p.IsActive).Where(p => p.UserId.ToString() == userId)
-                .Select(p => new PublicationAllViewModel
-                {
-                    Id = p.Id.ToString(),
-                    Title = p.Title,
-                    Content = p.Content,
-                    ImageUrl = p.ImageUrl,
-
-                }).ToArrayAsync();
+                .To<PublicationAllViewModel>()
+                .ToArrayAsync();
 
             return allUserPublications;
         }

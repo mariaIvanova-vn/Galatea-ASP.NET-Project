@@ -12,12 +12,12 @@ namespace Galatea.Web.ViewModels.Publication
             this.Categories = new HashSet<CategoryPublicationSelectFormModel>();
         }
 
-        [Required]
+        [Required(ErrorMessage = "Заглавие е задължително")]
         [StringLength(TitleMaxLength, MinimumLength = TitleMinLength)]
         [Display(Name = "Заглавие")]
         public string Title { get; set; } = null!;
 
-        [Required]
+        [Required(ErrorMessage = "Съдържание е задължително")]
         [StringLength(ContentMaxLength, MinimumLength = ContentMinLength)]
         [Display(Name = "Съдържание")]
         public string Content { get; set; } = null!;

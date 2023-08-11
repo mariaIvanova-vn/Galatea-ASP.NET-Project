@@ -7,6 +7,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 
 using static Galatea.Common.GeneralConstants;
+using Galatea.Web.ViewModels.Home;
+using System.Reflection;
+using Galatea.Services.Mapping;
 
 namespace Galatea.Web
 {
@@ -57,6 +60,8 @@ namespace Galatea.Web
                });
 
             WebApplication app = builder.Build();
+
+            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
 
             if (app.Environment.IsDevelopment())
             {

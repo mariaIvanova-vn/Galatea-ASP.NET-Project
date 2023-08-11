@@ -30,8 +30,13 @@
     <ProjectReference Include="..\Galatea.Data.Models\Galatea.Data.Models.csproj" />
     <ProjectReference Include="..\Galatea.Data\Galatea.Data.csproj" />
     <ProjectReference Include="..\Galatea.Services.Data\Galatea.Services.Data.csproj" />
+    <ProjectReference Include="..\Galatea.Services.Mapping\Galatea.Services.Mapping.csproj" />
     <ProjectReference Include="..\Galatea.Web.Infrastructure\Galatea.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\Galatea.Web.ViewModels\Galatea.Web.ViewModels.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Identity\Pages\Account\" />
   </ItemGroup>
 
 </Project>
