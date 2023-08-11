@@ -12,9 +12,11 @@ Galatea is my project for ASP.NET Core MVC course at SoftUni (June 2023).
 
 ![allPublications](https://github.com/mariaIvanova-vn/Galatea-ASP.NET-Project/assets/105202530/52000bb9-ebcd-470b-a234-3ec91804352f)
 
-
 ![login](https://github.com/mariaIvanova-vn/Galatea-ASP.NET-Project/assets/105202530/1b9763d4-dbf5-404c-bb71-d8a35789a523)
 
+![Register](https://github.com/mariaIvanova-vn/Galatea-ASP.NET-Project/assets/105202530/1241a792-e89d-45dd-9805-7bf9a982521d)
+
+![administratorPage](https://github.com/mariaIvanova-vn/Galatea-ASP.NET-Project/assets/105202530/ef473848-252d-4f8e-9d72-2a808a62eeda)
 
 ----------
 
