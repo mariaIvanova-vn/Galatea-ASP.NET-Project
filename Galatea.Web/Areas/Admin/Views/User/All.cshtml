@@ -1,8 +1,8 @@
-﻿@*﻿@using Galatea.Web.Infrastructure.Middlewares;*@
+﻿﻿@using Galatea.Web.Infrastructure.Middlewares;
 @model IEnumerable<UserViewModel>
 
 @{
-    ViewBag.Title = "All Users";
+    ViewBag.Title = "Всички потребители";
 }
 
 <h2 class="text-center">@ViewBag.Title</h2>
@@ -12,9 +12,10 @@
     <thead>
         <tr>
             <th><label>Email</label></th>
-            <th><label>Full Name</label></th>
-            <th><label>Phone Number</label></th>
-            <th><label>User Is Online</label></th>
+            <th><label>Телефон</label></th>
+            <th><label></label></th>
+            <th><label>Потребители на линия</label></th> 
+            <th><label></label></th>
         </tr>
     </thead>
     <tbody>
@@ -34,14 +35,14 @@
                     }
                 </td>
                 <td>
-                    @*@if (OnlineUsersMiddleware.CheckIfUserIsOnline(user.Id))
+                    @if (OnlineUsersMiddleware.CheckIfUserIsOnline(user.Id))
                     {
                         <label>✔</label>
                     }
                     else
                     {
                         <label class="text-center">❌</label>
-                    }*@
+                    }
                 </td>
             </tr>
         }

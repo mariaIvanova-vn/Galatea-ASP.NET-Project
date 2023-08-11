@@ -1,4 +1,5 @@
 ﻿using Galatea.Data.Models;
+using Galatea.Web.Infrastructure.Middlewares;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
@@ -69,6 +70,11 @@ namespace Galatea.Web.Infrastructure.Extensions
             .GetResult();
 
             return app;
+        }
+
+        public static IApplicationBuilder EnableOnlineUsersCheck(this IApplicationBuilder app)
+        {
+            return app.UseMiddleware<OnlineUsersMiddleware>();
         }
     }
 }
