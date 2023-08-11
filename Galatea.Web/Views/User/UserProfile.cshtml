@@ -1,0 +1,75 @@
+﻿﻿@using Microsoft.AspNetCore.Identity
+@using Galatea.Data.Models
+
+@model Galatea.Web.ViewModels.Users.UserViewModel
+@inject UserManager<AppUser> UserManager
+@{
+    var userId = UserManager.GetUserId(this.User);
+}
+
+<div class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+</div>
+<div class="container">
+    <div class="text-center"><h2>Профил на @Model.Email</h2></div>
+    <div class="row my-2">
+        <div class="col-lg-8 order-lg-2">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a href="" data-target="#profile" data-toggle="tab" class="nav-link active">Профил</a>
+                </li>
+                <li class="nav-item">
+                    <a href="" data-target="#publications" data-toggle="tab" class="nav-link">Обяви</a>
+                </li>
+                <li class="nav-item">
+                    <a href="" data-target="#comments" data-toggle="tab" class="nav-link">Коментари</a>
+                </li>
+            </ul>
+            <div class="tab-content py-4">
+                <div class="tab-pane active" id="profile">
+                    <h5 class="mb-3">Потребителски Профил</h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>телефон :  @Model.PhoneNumber</h5>
+                            <h5>Потребителско Име : @Model.Email</h5>
+                            <h5>Брой обяви : @Model.Publications.Count</h5>
+                        </div>
+                    </div>
+                    <!--/row-->
+                </div>
+                <div class="tab-pane" id="publication">
+                    <h5 class="mb-3">Обяви</h5>
+                    <partial name="_PublicationPartial" , model="@Model" />
+                </div>
+                <div class="tab-pane" id="publication">
+                    <h5 class="mb-3">Коментари</h5>
+                    @foreach (var comment in Model.Comments)
+                    {
+                        <div class="col-md-12 ftco-animate">
+                            <div class="job-post-item p-4 d-block d-lg-flex align-items-center">
+                                <div class="one-third mb-4 mb-md-0">
+                                    <div class="align-items-center">
+                                        <h2 class="mr-3 text-black"><a asp-controller="Publication" asp-action="Details" asp-route-id="@comment.PublicationId">@comment.Text</a></h2>
+                                        <span class="subadge">@comment.CreatedOn</span>
+
+                                    </div>
+
+                                    @if (userId == comment.UserId || User.IsInRole("Administrator"))
+                                    {
+                                        <a class="btn btn-danger" type="submit" asp-controller="Comments" asp-action="Delete" asp-route-commentId="@comment.Id">Изтрий</a>
+                                    }
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    }
+                </div>
+            </div>
+        </div>
+       @* <div class="col-lg-4 order-lg-1 text-center">
+            <img src="@Model.ProfilePictureUrl" class="mx-auto img-fluid img-circle d-block" alt="avatar">
+        </div>*@
+    </div>
+</div>

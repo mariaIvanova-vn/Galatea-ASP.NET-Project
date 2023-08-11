@@ -1,0 +1,22 @@
+﻿@model Galatea.Web.Areas.Admin.Models.MyPublicationViewModel
+
+@{
+    ViewBag.Title = "Моите публикации";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<h4>Моите добавени публикации</h4>
+
+@if (!Model.AddedPublication.Any())
+{
+    <h2 class="text-center">Нямате добавени публикации!</h2>
+}
+
+<div class="row">
+    @foreach (var publication in Model.AddedPublication)
+    {
+        @await Html.PartialAsync("~/Views/Shared/_PublicationPartial.cshtml", publication)
+    }
+</div>

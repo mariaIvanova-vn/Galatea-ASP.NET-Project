@@ -1,0 +1,25 @@
+﻿﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="mt-4 p-5 bg-light text-center">
+    <h2 class="display-4">Здравей, Администратор!</h2>
+    <p class="lead mb-1 mt-3">
+        Това е твоята администраторска зона - можеш да <b>четеш</b>, <b>създаваш</b>,
+        <b>изтриваш</b> and <b>редактираш</b> публикации.       
+    </p>
+    <p class="lead mt-1">
+        Можеш също да видиш <b>всички потребители</b> на сайта.
+    </p>
+    <hr class="my-4">
+    <a asp-area="" asp-controller="Publication" asp-action="All"
+       class="btn btn-info">Всички Публикации</a>
+    <a asp-area="" asp-controller="Publication" asp-action="Add"
+       class="btn btn-info">Добави Публикация</a>
+    <span>     </span>
+    <a asp-area="Admin" asp-controller="Publication" asp-action="Mine"
+       class="btn btn-info">Моите Публикации</a>
+    <span>    </span>
+    <a asp-area="Admin" asp-controller="User" asp-action="All"
+       class="btn btn-info">Всички Потребители</a>
+</div>
