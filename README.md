@@ -19,7 +19,11 @@ Galatea is my project for ASP.NET Core MVC course at SoftUni (June 2023).
 ----------
 
 ### Using ASP.NET-MVC-Template originally developed by:
+
 - [Kristiyan Ivanov](https://github.com/KrIsKa7a)
+
+- [Nikolay Kostov](https://github.com/NikolayIT)
+
 
 ## License
 
