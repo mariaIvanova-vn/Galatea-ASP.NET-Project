@@ -24,16 +24,16 @@ namespace Galatea.Web.Areas.Admin.Controllers
         {
             var users =await this.usersService.AllAsync();
 
-            //if (users == null)
-            //{
-            //    users = await this.usersService.AllAsync();
+            if (users == null)
+            {
+                users = await this.usersService.AllAsync();
 
-            //    MemoryCacheEntryOptions cacheOptions = new MemoryCacheEntryOptions()
-            //        .SetAbsoluteExpiration(TimeSpan
-            //            .FromMinutes(UsersCacheDurationMinutes));
+                MemoryCacheEntryOptions cacheOptions = new MemoryCacheEntryOptions()
+                    .SetAbsoluteExpiration(TimeSpan
+                        .FromMinutes(UsersCacheDurationMinutes));
 
-            //    this.memoryCache.Set(UsersCacheKey, users, cacheOptions);
-            //}
+                this.memoryCache.Set(UsersCacheKey, users, cacheOptions);
+            }
 
             return View(users);
         }

@@ -14,6 +14,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using Xunit.Sdk;
 
+using static Galatea.Common.GeneralConstants;
+
 namespace Galatea.Web.Controllers
 {
     public class UserController : Controller
@@ -69,7 +71,7 @@ namespace Galatea.Web.Controllers
             }
 
             await signInManager.SignInAsync(user, false);
-            //this.memoryCache.Remove(UsersCacheKey);
+            this.memoryCache.Remove(UsersCacheKey);
 
             return RedirectToAction("Index", "Home");
         }
