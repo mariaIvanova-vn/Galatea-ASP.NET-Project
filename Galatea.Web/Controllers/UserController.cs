@@ -116,12 +116,14 @@ namespace Galatea.Web.Controllers
         [Authorize]
         public async Task<IActionResult> UserProfile(string id)
         {
-            var user = await this.userService.GetUser(id);
+            var comments = await this.commentService.GetCommentByUserIdAsync(id);
 
-            var userId = await this.userService.GetUserIdAsync();
-            user.Comments = (ICollection<CommentViewModel>)await this.commentService.GetCommentByUserIdAsync(userId!);
+            //var user = await this.userService.GetUser(id);
+
+            //var userId = await this.userService.GetUserIdAsync();
+            //user.Comments = (ICollection<CommentViewModel>)await this.commentService.GetCommentByUserIdAsync(userId!);
   
-            return this.View(user);
-        }
+            return this.View(comments);
+        }     
     }
 }

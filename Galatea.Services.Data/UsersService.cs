@@ -38,21 +38,15 @@ namespace Galatea.Services.Data
 
             return allUsers;
         }
+        
 
-        //public async Task<string> GetUser(string id)
-        //{
-        //    var user = await this.dbContext.Users
-        //            .FirstAsync(x => x.Id.ToString() == id);
-
-        //    return user.UserName;
-        //}
         public async Task<UserViewModel> GetUser(string id)
         {
-            AppUser user = await dbContext.Users.FirstAsync(x=>x.Id.ToString() == id);  
+            var user = await this.dbContext.Users.FirstAsync(x => x.Id.ToString() == id);
 
-            
             return new UserViewModel
             {
+                Id = user.Id.ToString(),
                 Comments = (ICollection<CommentViewModel>)user.CommentsPublications
             };
         }

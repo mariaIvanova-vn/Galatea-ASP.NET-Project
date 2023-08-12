@@ -8,9 +8,12 @@ namespace Galatea.Web.Data
 {
     public class GalateaDbContext : IdentityDbContext<AppUser, IdentityRole<Guid>, Guid>
     {
-        public GalateaDbContext(DbContextOptions<GalateaDbContext> options)
+        private readonly bool seedDb;
+
+        public GalateaDbContext(DbContextOptions<GalateaDbContext> options, bool seedDb = true)
             : base(options)
         {
+            this.seedDb = seedDb;
         }
 
         public DbSet<Category> Categories { get; set; } = null!;

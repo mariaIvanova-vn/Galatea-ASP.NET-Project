@@ -1,4 +1,5 @@
 ﻿using Galatea.Data.Models;
+using Galatea.Services.Mapping;
 using Galatea.Web.ViewModels.Comments;
 using Galatea.Web.ViewModels.Publication;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Galatea.Web.ViewModels.Users
 {
-    public class UserViewModel 
+    public class UserViewModel : IMapFrom<AppUser>
     {
         public UserViewModel()
         {

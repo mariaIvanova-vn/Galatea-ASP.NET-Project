@@ -60,10 +60,9 @@
     <div class="col-md-12 ftco-animate">
         <div class="job-post-item p-4 d-block d-lg-flex align-items-center">
             <div class="one-third mb-4 mb-md-0">
-                <div class="align-items-center">
-                    
+                <div class="align-items-center">                  
                     <p>
-                        <a asp-controller="User" asp-action="UserProfile" asp-route-id="@comment.UserId" class="text-secondary text-left"><strong>@comment.UserName</strong></a>
+                        <a asp-controller="Comments" asp-action="Details" class="text-secondary text-left"><strong>@comment.UserName</strong></a>
                     </p>                   
                         <p>@comment.Text</p>
                         <time datetime="@comment.CreatedOn.ToString("O")"></time>
@@ -74,7 +73,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 }
 @if (User.Identity?.IsAuthenticated ?? false)
@@ -95,7 +93,7 @@
                         </div>
                         <div class="row form-group">
                             <div class="col-md-12">
-                                <input type="submit" value="Изпрати" asp-controller="Comments" asp-action="Create" asp-route-PublicationId="@Model.Id" asp-route-UserId="@User.GetId()" class="btn btn-primary  py-2 px-5">
+                                <input type="submit" value="Изпрати" asp-controller="Comments" asp-action="Create" asp-route-PublicationId="@Model.Id" asp-route-UserId="@User.GetId()" class="btn btn-info  py-2 px-5">
                             </div>
                         </div>
 

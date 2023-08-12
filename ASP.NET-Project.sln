@@ -29,6 +29,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ScreenShoots", "ScreenShoot
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Galatea.Services.Mapping", "Galatea.Services.Mapping\Galatea.Services.Mapping.csproj", "{B4FDB887-8004-4FC7-9DDE-C7C4CF61F86C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{A38BC1D1-992E-47AB-88A1-EA76B42ADD20}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Galatea.Services.Tests", "Galatea.Services.Tests\Galatea.Services.Tests.csproj", "{2BFB31AB-D124-4BC8-A463-C1470E1CEDB0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +75,10 @@ Global
 		{B4FDB887-8004-4FC7-9DDE-C7C4CF61F86C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4FDB887-8004-4FC7-9DDE-C7C4CF61F86C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4FDB887-8004-4FC7-9DDE-C7C4CF61F86C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BFB31AB-D124-4BC8-A463-C1470E1CEDB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BFB31AB-D124-4BC8-A463-C1470E1CEDB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BFB31AB-D124-4BC8-A463-C1470E1CEDB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BFB31AB-D124-4BC8-A463-C1470E1CEDB0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -84,6 +92,7 @@ Global
 		{FE5AC2DB-8407-40EA-848D-467CCE234ED6} = {CD97D3A9-6485-4B85-8166-546058AEA24A}
 		{D465996D-9DBE-4ADC-818B-0822EDEADD4C} = {CD97D3A9-6485-4B85-8166-546058AEA24A}
 		{B4FDB887-8004-4FC7-9DDE-C7C4CF61F86C} = {5B855E4B-FF33-4EE0-8B13-42A87D6FFBE2}
+		{2BFB31AB-D124-4BC8-A463-C1470E1CEDB0} = {A38BC1D1-992E-47AB-88A1-EA76B42ADD20}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {61F09810-8C0D-4ECE-9AF8-9A3B2213A5A9}

@@ -49,7 +49,7 @@
         </div>
         <div class="col-md-3">
             <div class="form-group mt-4 p-2">
-                <input type="submit" value="Търси" class="btn btn-primary" />
+                <input type="submit" value="Търси" class="btn btn-info" />
             </div>
         </div>
         
@@ -73,7 +73,7 @@
 
 <div class="row mb-5">
     <div class="col-md-6 d-grid gap-2 d-md-flex justify-content-md-start">
-        <a class="btn btn-primary @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
+        <a class="btn btn-info @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
            asp-controller="Publication"
            asp-action="All"
            asp-route-currentPage="@previousPage"
@@ -88,7 +88,7 @@
     }
 
     <div class="col-md-6 d-grid gap-2 d-md-flex justify-content-md-end">
-        <a class="btn btn-primary
+        <a class="btn btn-info
            @(nextPageBeDisabled ? "disabled" : string.Empty)"
            asp-controller="Publication"
            asp-action="All"
