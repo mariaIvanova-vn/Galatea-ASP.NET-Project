@@ -31,12 +31,24 @@ namespace Galatea.Services.Tests
         }
 
         [Test]
-        public async Task GetUserCount()
+        public async Task GetUserCountReturnTrue()
         {
             var userCount = await dbContext.Users.CountAsync();
 
-            Assert.IsFalse(await dbContext.Users.AnyAsync());           
+            Assert.IsTrue(await dbContext.Users.AnyAsync());
+            Assert.IsFalse(userCount == 0);
         }
 
+        [Test]
+        public async Task GetUser()
+        {
+            var userId = Guid.Parse("5A2BC7E4-B447-42C8-AF8E-E27B9B0C5DD5");
+
+            var user = await this.dbContext.Users.FirstAsync(x => x.Id == userId);
+
+            Assert.IsNotNull(user);
+
+            Assert.IsTrue(user.Id == userId);
+        }
     }
 }
