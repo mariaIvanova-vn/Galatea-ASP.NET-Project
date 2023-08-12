@@ -19,6 +19,8 @@ namespace Galatea.Services.Tests
         public static Publication Publication1 = null!;
         public static Publication Publication2 = null!;
 
+        public static Comment comment = null!;
+
         public static List<Publication> Publications = 
             new List<Publication>() { Publication1, Publication2 };
 
@@ -74,9 +76,20 @@ namespace Galatea.Services.Tests
                 CategoryId = 3,
                 UserId = Guid.Parse("4305F537-DF35-473E-AEBC-97C32ADE996C"),
             };
+
+            comment = new Comment
+            {
+                Id = Guid.Parse("3B03A62B-0AD2-490A-5A68-08DB9A933A74"),
+                Text = "искам",
+                UserId = Guid.Parse("5A2BC7E4-B447-42C8-AF8E-E27B9B0C5DD5"),
+                PublicationId = Guid.Parse("898BC7B9-B563-43F4-A2A9-462873BAAD61")
+            };
+
+
             dbContext.Users.Add(User1);
             dbContext.Users.Add(User2);
             dbContext.Publications.AddRange(Publication1, Publication2);
+            dbContext.Comments.Add(comment);
 
             dbContext.SaveChanges();
         }       
